@@ -8,5 +8,5 @@
 .idea/webServers.xml
 .idea/workspace.xml
 
-.ftpconfig
+*.ftpconfig
 *.JPG
