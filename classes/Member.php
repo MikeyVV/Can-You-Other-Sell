@@ -73,8 +73,16 @@ class Member extends db
         $sql = "INSERT INTO `CYOS_Member`
             (`email`, `password`, `firstName`, `lastName`, `status`, `rateSum`, `totalVote`) 
             VALUES ('$email','$password','$firstName','$lastname', 1,0,0)";
-
+        mysqli_query($this->db_link, "SET NAMES UTF8");
         mysqli_query($this->db_link, $sql);
+    }
+
+    public function isFoundEmail($email)
+    {
+        mysqli_query($this->db_link, "SET NAMES UTF8");
+        $result = mysqli_query($this->db_link, "SELECT `email` FROM `CYOS_Member` WHERE `email` = '$email' ");
+        if(mysqli_num_rows($result) == 1) return true;
+        return false;
     }
 
     public function edit($firstName, $lastName, $phoneNumber, $address, $LineID, $faceBook)
@@ -126,12 +134,11 @@ class Member extends db
         $password_from_user = mysqli_real_escape_string($this->db_link, $password_from_user);
 
         mysqli_query($this->db_link, "SET NAMES UTF8");
-        $result = mysqli_query($this->db_link, "SELECT * FROM `CYOS_Member` WHERE `email` = '$email' ");
-        $userFound = mysqli_num_rows($result);
+        $result = mysqli_query($this->db_link, "SELECT `email`, `password`, `idMember`,`firstName`, `lastName`, `status` FROM `CYOS_Member` WHERE `email` = '$email' ");
         $result = mysqli_fetch_object($result);
         $password_hash_from_db = $result->password;
 
-        if ($userFound == 1 AND password_verify($password_from_user, $password_hash_from_db)) {
+        if ($this->isFoundEmail($result->email) AND password_verify($password_from_user, $password_hash_from_db)) {
             $_SESSION["idMember"] = $result->idMember;
             $_SESSION["firstName"] = $result->firstName;
             $_SESSION["lastName"] = $result->lastName;
