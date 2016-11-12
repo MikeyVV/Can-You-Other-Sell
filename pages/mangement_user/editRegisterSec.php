@@ -32,5 +32,11 @@
     <center><h4>บันทึกเรียบร้อยแล้ว</h4></center>
 </div>
 
+<script>
+    setTimeout(function() {
+        location.assign("./");
+    }, 2000);
+
+</script>
 </body>
 </html>

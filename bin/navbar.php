@@ -20,7 +20,6 @@ if($_SESSION['idMember']) {
           </button>
             <a class="navbar-brand" href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/start.php"><i class="fa fa-home" aria-hidden="true"></i>&nbsp&nbspCan You Other Sell?</a>
         </div>
-        <!-- ddsfd-->
         <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
       </ul>
@@ -43,7 +42,7 @@ if($_SESSION['idMember']) {
             <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName']?>
             <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/mangement_user/editRegister.php"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp&nbspจัดการข้อมูลส่วนตัว</a></li>
+              <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/mangement_user/"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp&nbspจัดการข้อมูลส่วนตัว</a></li>
               <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_product/Management%20Products.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp&nbspจัดการขายสินค้า</a></li>
               <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_fv/Remove_items_of_interest.php"><i class="fa fa-star" aria-hidden="true"></i>&nbsp&nbspจัดการสินค้าที่สนใจ</a></li>
               <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_report_user/management_report_user.php"><i class="fa fa-balance-scale" aria-hidden="true"></i>&nbsp&nbspจัดการเรื่องร้องเรียน</a></li>
@@ -58,7 +57,6 @@ if($_SESSION['idMember']) {
         </ul>
         <?php }?>
         <!-- /ไม่ได้ล็อกอิน -->
-      </ul>
     </div>
     <!-- ddsfd-->
 					
