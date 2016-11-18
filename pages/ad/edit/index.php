@@ -27,7 +27,7 @@
         </div>
         <!-- ทำงานที่นี่ -->
         <div class="col-sm-8 cyos-card" style="background-color: white; height: 50vh;">
-            <h1>เพิ่มโฆษณา</h1>
+            <h1>แก้ไขโฆษณา</h1>
             <div class="cyos-underline" style="margin-bottom: 3vh"></div>
             <form style="margin-top: 1px" id="add_ad_form">
                 <div class="form-group">

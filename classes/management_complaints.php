@@ -31,14 +31,22 @@
         public function showListComplaints()
         {
           mysqli_query($this->db_link, "SET NAMES UTF8");
-          $sql = "select * from `CYOS_Complaints`";
+          $sql = "SELECT `idComplaints`, CYOS_Complaints.date , `category`, `topic`, `linkComplaints`, `detail`, CYOS_Complaints.status , CYOS_Member.firstName, CYOS_Member.lastName, CYOS_Member.idMember FROM `CYOS_Complaints` INNER JOIN `CYOS_Member` WHERE CYOS_Complaints.idMember = CYOS_Member.idMember ";
           $result = mysqli_query($this->db_link, $sql);
-          
-          // $out .= "\"list\": [";
-          // $out .= json_encode(mysqli_fetch_object($result));
-          // $out .= "]";
-          $out = [];
-            array_push($out,json_encode(mysqli_fetch_object($result))); 
+          $n = $result->num_rows;
+          $i = 0;
+
+           $out = "{\"list\": [";
+          while($obj = mysqli_fetch_object($result)){
+            if($n-1 == $i){
+              $out .= json_encode($obj);
+            }else{
+              $out .= json_encode($obj).",";
+            }
+            $i++;
+          }
+           $out .= "]}";
+
           return $out;
         }
 
@@ -47,8 +55,8 @@
           
           $sql = "select * from `CYOS_Complaints` where idMember='".$_SESSION['idMember']."' ";
           $result = mysqli_query($this->db_link, $sql);
-          
-          $out .= "\"list\": [";
+
+          $out = "\"list\": [";
           while($list = mysqli_fetch_object($result)){
             $out .= json_encode(mysqli_fetch_object($result));
           }
@@ -91,7 +99,7 @@
 
     }
 
-    // $ma = new Management_complaints();
-    // $ma->showListComplaintsUser(1);
+$c = new Management_complaints();
+$c->showListComplaints();
 
 ?>

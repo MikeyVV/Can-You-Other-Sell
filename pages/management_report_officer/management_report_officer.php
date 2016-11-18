@@ -1,3 +1,8 @@
+<?php
+require ("../../classes/management_complaints.php");
+$c = new Management_complaints();
+$c = json_decode($c->showListComplaints());
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,31 +73,40 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php 
-                            require("../../classes/management_complaints.php");
-                            $obj = new Management_complaints();
-                            $out = $obj->showListComplaints();
-                            echo $out[0]->topic;
+                        <?php
+                            $num = count($c->list);
+                            echo $num;
+                            for($i = 0; $i < $num; $i++){
+                                //$c->list[0]->idMember;
+                                echo "<tr><td>".($i+1)."</td>";
+                                echo "<td class=\"mailbox-name\">".$c->list[$i]->fisrtName." ".$c->list[$i]->lastName."</td>";
+                                echo "<td class=\"mailbox-name\">10/09/2559</td>";
+                                echo "<td class=\"mailbox-subject\"><a href=\"#\">ถูกโกง</a></td>";
+                                echo "<td class=\"mailbox-attachment\"><a href=\"www.cyos.com/vehicles/car/products.php?id=vt1154\">www.cyos.com/vehicles/train/pr...</a></td>";
+                                echo "<td class=\"mailbox-date\">ไม่ได้สินค้า</td>";
+                                echo "<td class=\"mailbox-date\">ดำเนินการเสร็จสิน(เราได้แบนสมาชิกที่ชื่อ....เรียบร้อบแล้ว</td></tr>";
+
+                            }
                         ?>
                         <tr>
-                            <td>1</td>
-                            <td class="mailbox-name">ธนโชติ หนวดเฟิ้ม</td>
-                            <td class="mailbox-name">05/09/2559</td>
+                            <td id="num"></td>
+                            <td class="mailbox-name" id="idMember"></td>
+                            <td class="mailbox-name" id="date"></td>
                             <td class="mailbox-subject"><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_report_officer/Complaint.php">ไม่ได้รับสินค้าตามที่กำหนด</a></td>
-                            <td class="mailbox-attachment"><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/ProductDetail.php" target="_blank">www.cyos.com/vehicles/train/pr...</a></td>
-                            <td class="mailbox-date">สินค้าไม่ตรงกับประกาศ</td>
-                            <td class="mailbox-date">รอดำเนินการ</td>
+                            <td class="mailbox-attachment" id="link"></td>
+                            <td class="mailbox-date" id="detail"></td>
+                            <td class="mailbox-date" id="status"></td>
                         </tr>
 
-                        <tr>
-                            <td>2</td>
-                            <td class="mailbox-name">ธนโชติ หนวดเฟิ้ม</td>
-                            <td class="mailbox-name">10/09/2559</td>
-                            <td class="mailbox-subject"><a href="#">ถูกโกง</a></td>
-                            <td class="mailbox-attachment"><a href="www.cyos.com/vehicles/car/products.php?id=vt1154">www.cyos.com/vehicles/train/pr...</a></td>
-                            <td class="mailbox-date">ไม่ได้สินค้า</td>
-                            <td class="mailbox-date">ดำเนินการเสร็จสิน(เราได้แบนสมาชิกที่ชื่อ....เรียบร้อบแล้ว</td>
-                        </tr>
+<!--                        <tr>-->
+<!--                            <td>2</td>-->
+<!--                            <td class="mailbox-name">ธนโชติ หนวดเฟิ้ม</td>-->
+<!--                            <td class="mailbox-name">10/09/2559</td>-->
+<!--                            <td class="mailbox-subject"><a href="#">ถูกโกง</a></td>-->
+<!--                            <td class="mailbox-attachment"><a href="www.cyos.com/vehicles/car/products.php?id=vt1154">www.cyos.com/vehicles/train/pr...</a></td>-->
+<!--                            <td class="mailbox-date">ไม่ได้สินค้า</td>-->
+<!--                            <td class="mailbox-date">ดำเนินการเสร็จสิน(เราได้แบนสมาชิกที่ชื่อ....เรียบร้อบแล้ว</td>-->
+<!--                        </tr>-->
                         </tbody>
                     </table><!-- /.table -->
                 </div><!-- /.mail-box-messages -->
@@ -132,6 +146,31 @@
 </body>
 </html>
 
+<!--script type="text/javascript">
+    $.get("callRest.php",
+        function (data, status) {
+            if (status === "success") {
+                data = JSON.parse(data);
+                for(var i = 0; i < data.list.length; i++){
+
+                    $("#show").html("<tr></tr>");
+
+                    $("#num").html(i);
+                    $("#idComplaints").html(data.list[i].idComplaints);
+                    $("#date").html(data.list[i].date);
+                    $("#category").html(data.list[i].category);
+                    $("#topic").html(data.list[i].topic);
+                    $("#link").html("<a href='"+data.list[i].linkComplaints+"'>xxx</a>");
+                    $("#detail").html(data.list[i].detail);
+                    if(data.list[i].status == 0){
+                        $("#status").html("xxx");
+                    }
+                    $("#idMember").html(data.list[i].idMember);
+                }
+
+            }
+        });
+</script-->
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -154,10 +193,9 @@
                 $('#select_all').prop('checked',false);
             }
         });
-
-
     });
 </script>
+
 <script>
     $(document).ready(function(){
         $("#country").hide();

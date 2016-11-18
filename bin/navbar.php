@@ -32,7 +32,7 @@ if($_SESSION['idMember']) {
           <ul class="dropdown-menu">
             <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/ad/"><i class="fa fa-window-restore" aria-hidden="true"></i>&nbsp&nbspจัดการโฆษณา</a></li>
             <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_report_officer/management_report_officer.php"><i class="fa fa-balance-scale" aria-hidden="true"></i>&nbsp&nbspดูเรื่องร้องเรียนจากสมาชิก</a></li>
-            <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_fv/Remove_items_of_interest.php"><i class="fa fa-star" aria-hidden="true"></i>&nbsp&nbspจัดการสินค้าที่สนใจ</a></li>
+            <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_fv/index.php"><i class="fa fa-star" aria-hidden="true"></i>&nbsp&nbspจัดการสินค้าที่สนใจ</a></li>
             <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/login/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp&nbspออกจากระบบ</a></li>
           </ul>
         </li>
@@ -45,7 +45,7 @@ if($_SESSION['idMember']) {
             <ul class="dropdown-menu">
               <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/mangement_user/"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp&nbspจัดการข้อมูลส่วนตัว</a></li>
               <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_product/Management%20Products.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp&nbspจัดการขายสินค้า</a></li>
-              <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_fv/Remove_items_of_interest.php"><i class="fa fa-star" aria-hidden="true"></i>&nbsp&nbspจัดการสินค้าที่สนใจ</a></li>
+              <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_fv/index.php"><i class="fa fa-star" aria-hidden="true"></i>&nbsp&nbspจัดการสินค้าที่สนใจ</a></li>
               <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_report_user/management_report_user.php"><i class="fa fa-balance-scale" aria-hidden="true"></i>&nbsp&nbspจัดการเรื่องร้องเรียน</a></li>
               <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/login/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp&nbspออกจากระบบ</a></li>
             </ul>
