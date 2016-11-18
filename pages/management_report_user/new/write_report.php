@@ -79,7 +79,7 @@
 						                    <option value="1">หมวดสินค้าผิดประเภท</option>
 						                    <option value="2">สินค้าผิดกฎหมาย</option>
 						                    <option value="3">ผู้ขายทำผิดกฎของเว็บ</option>
-                                <option value="4">ไม่ได้รับสินค้า</option>
+                                            <option value="4">ไม่ได้รับสินค้า</option>
 						            </select>
                 </div>
                 <div class="form-group" align="left">

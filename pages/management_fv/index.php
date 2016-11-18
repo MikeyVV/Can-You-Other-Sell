@@ -29,7 +29,17 @@ $(this).toggleClass("glyphicon-star glyphicon-star-empty");
   </head>
 <body>
 <!--แถบบาร์ข้างบน Navbar-->
-<?php require("../../bin/navbar.php"); ?><!--/แถบบาร์ข้างบน Navbar-->
+<?php require("../../bin/navbar.php"); 
+require("../../classes/Favorite_Product.php");
+$favor = new FavoriteManagement();
+$idM = $_SESSION['idMember'];
+$query = $favor->getPostFavorite($idM);
+
+//echo $idM;
+
+                 
+                  
+?><!--/แถบบาร์ข้างบน Navbar-->
 
 <div class="container-fluid">
     <div class="row">
@@ -107,39 +117,33 @@ $(this).toggleClass("glyphicon-star glyphicon-star-empty");
                         <td class="mailbox-date">สถานะ&nbsp<i class="fa fa-fw fa-sort-down"></i></td>
                         <td></td>
                       </tr>
+                      <?php while ($row = mysqli_fetch_array($query)) { ?>
                       <tr>
                       <td ><div>
   <span class="star glyphicon glyphicon-star"></span>
 </div></td>
-                        <td class="mailbox-name">05/05/2559</td>
-                        <td class="mailbox-subject"><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/ProductDetail.php">รถไฟไทย สไตล์วินเทจ</a></td>
-                        <td class="mailbox-attachment">ยานพาหนะ</td>
-                        <td class="mailbox-date">200,000,000,000</td>
-                          <td class="mailbox-date">ประกาศขายแล้ว</td>
+                        <td class="mailbox-name"><?php echo $row['date']; ?></td>
+                        <td class="mailbox-subject"><a></a><?php echo $row['name']; ?></td>
+                        <td class="mailbox-attachment"><?php echo $row['nameCategory']; ?></td>
+                        <td class="mailbox-date"><?php echo $row['price']; ?></td>
+                          <td class="mailbox-date"><?php
+                           echo $row['status'];?></td>
+                           <td class="mailbox-date">ลบ</td>
                         <td>
 
 
                         <!-- /.btn-group --></td>
                       </tr>
+                      <?php } ?>
                       <tr>
                         <td ><div>
-    <span class="star glyphicon glyphicon-star"></span>
-    </div></td>
-                        <td class="mailbox-name">05/05/2559</td>
-                        <td class="mailbox-subject"><a href="#">รถมือสองราคาถูกจ้า</a></td>
-                        <td class="mailbox-attachment">ยานพาหนะ</td>
-                        <td class="mailbox-date">500,000</td>
-                          <td class="mailbox-date">ประกาศขายแล้ว</td>
-                        <td>
-
-
-                        <!-- /.btn-group --></td>
-                      </tr>
+    
 
                     </tbody>
                   </table><!-- /.table -->
                 </div><!-- /.mail-box-messages -->
               </div><!-- /.box-body -->
+            
               <div class="box-footer no-padding">
                 <div class="mailbox-controls">
                   <!-- Check all button -->

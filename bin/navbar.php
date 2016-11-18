@@ -27,9 +27,10 @@ if($_SESSION['idMember']) {
         <!-- เจ้าหน้าที่ -->
       <?php if($isLogin AND $isOfficer) {?>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo "เจ้าหน้าที่".$_SESSION['firstName']." ".$_SESSION['lastName']?>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-id-badge" aria-hidden="true"></i>&nbsp&nbsp<?php echo "เจ้าหน้าที่".$_SESSION['firstName']." ".$_SESSION['lastName']?>
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
+            <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/ad/"><i class="fa fa-window-restore" aria-hidden="true"></i>&nbsp&nbspจัดการโฆษณา</a></li>
             <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_report_officer/management_report_officer.php"><i class="fa fa-balance-scale" aria-hidden="true"></i>&nbsp&nbspดูเรื่องร้องเรียนจากสมาชิก</a></li>
             <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_fv/Remove_items_of_interest.php"><i class="fa fa-star" aria-hidden="true"></i>&nbsp&nbspจัดการสินค้าที่สนใจ</a></li>
             <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/login/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp&nbspออกจากระบบ</a></li>

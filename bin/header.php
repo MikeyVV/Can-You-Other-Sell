@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/CSS/style.css">
 
 <!-- Font Aewsome -->
-<link rel="stylesheet" href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/CSS/font-awesome-4.6.3/css/font-awesome.min.css">
+<script src="https://use.fontawesome.com/ac18cb82d2.js"></script>
 
 <!-- jQuery library -->
 <script src="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/js/jquery.min.js"></script>

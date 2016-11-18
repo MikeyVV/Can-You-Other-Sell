@@ -119,15 +119,15 @@ require("db.php");
 
   }
 
-  // $comp = new Complaints(1);
-  // echo $comp->getIDComplaints();
-  // echo $comp->getDate();
-  // echo $comp->getCategory();
-  // echo $comp->getTopic();
-  // echo $comp->getLinkComplaints();
-  // echo $comp->getImageComplaints();
-  // echo $comp->getDetail();
-  // echo $comp->getIDmember();
-  // echo $comp->getStatus();
+  $comp = new Complaints(1);
+  echo $comp->getIDComplaints();
+  echo $comp->getDate();
+  echo $comp->getCategory();
+  echo $comp->getTopic();
+  echo $comp->getLinkComplaints();
+  echo $comp->getImageComplaints();
+  echo $comp->getDetail();
+  echo $comp->getIDmember();
+  echo $comp->getStatus();
 
 ?>

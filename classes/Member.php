@@ -112,6 +112,15 @@ class Member extends db
         }*/
     }
 
+    public function getRate($idMemebr)
+    {
+        $idMemebr = mysqli_real_escape_string($this->db_link, $idMemebr);
+        $sql = "SELECT `rate` FROM `CYOS_Member` WHERE `idMember` = $idMemebr";
+        $result = mysqli_query($this->db_link, $sql);
+        $this->idMemebr = mysqli_fetch_object($result)->rate;
+        return $this->idMember;
+    }
+
     public function register($email, $password, $firstName, $lastname)
     {
         $email = mysqli_real_escape_string($this->db_link, $email);

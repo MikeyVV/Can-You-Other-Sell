@@ -54,8 +54,8 @@
                 <br>
 
                 <div class="table-responsive mailbox-messages">
-                    <table class="table table-hover table-striped">
-                        <tbody>
+                    <table class="table table-hover table-striped cyos-table-white">
+                        <thead>
                         <tr>
                             <!-- Check all button -->
                             <th>No.</th>
@@ -66,7 +66,14 @@
                             <th class="mailbox-date">ประเภทเรื่องร้องเรียน <i class="fa fa-fw fa-sort-down"></i></th>
                             <th class="mailbox-date">สถานะ <i class="fa fa-fw fa-sort-down"></i></th>
                         </tr>
-
+                        </thead>
+                        <tbody>
+                        <?php 
+                            require("../../classes/management_complaints.php");
+                            $obj = new Management_complaints();
+                            $out = $obj->showListComplaints();
+                            echo $out[0]->topic;
+                        ?>
                         <tr>
                             <td>1</td>
                             <td class="mailbox-name">ธนโชติ หนวดเฟิ้ม</td>
