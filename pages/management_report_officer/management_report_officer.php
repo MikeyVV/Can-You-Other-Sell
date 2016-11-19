@@ -79,24 +79,24 @@ $c = json_decode($c->showListComplaints());
                             for($i = 0; $i < $num; $i++){
                                 //$c->list[0]->idMember;
                                 echo "<tr><td>".($i+1)."</td>";
-                                echo "<td class=\"mailbox-name\">".$c->list[$i]->fisrtName." ".$c->list[$i]->lastName."</td>";
-                                echo "<td class=\"mailbox-name\">10/09/2559</td>";
-                                echo "<td class=\"mailbox-subject\"><a href=\"#\">ถูกโกง</a></td>";
+                                echo "<td class=\"mailbox-name\">".$c->list[$i]->firstName." ".$c->list[$i]->lastName."</td>";
+                                echo "<td class=\"mailbox-name\">".$c->list[$i]->date."</td>";
+                                echo "<td class=\"mailbox-subject\"><a href=\"#\">".$c->list[$i]->topic."</a></td>";
                                 echo "<td class=\"mailbox-attachment\"><a href=\"www.cyos.com/vehicles/car/products.php?id=vt1154\">www.cyos.com/vehicles/train/pr...</a></td>";
-                                echo "<td class=\"mailbox-date\">ไม่ได้สินค้า</td>";
-                                echo "<td class=\"mailbox-date\">ดำเนินการเสร็จสิน(เราได้แบนสมาชิกที่ชื่อ....เรียบร้อบแล้ว</td></tr>";
+                                echo "<td class=\"mailbox-date\">".$c->list[$i]->detail."</td>";
+                                echo "<td class=\"mailbox-date\">".$c->list[$i]->status."</td></tr>";
 
                             }
                         ?>
-                        <tr>
-                            <td id="num"></td>
-                            <td class="mailbox-name" id="idMember"></td>
-                            <td class="mailbox-name" id="date"></td>
-                            <td class="mailbox-subject"><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_report_officer/Complaint.php">ไม่ได้รับสินค้าตามที่กำหนด</a></td>
-                            <td class="mailbox-attachment" id="link"></td>
-                            <td class="mailbox-date" id="detail"></td>
-                            <td class="mailbox-date" id="status"></td>
-                        </tr>
+<!--                        <tr>-->
+<!--                            <td id="num"></td>-->
+<!--                            <td class="mailbox-name" id="idMember"></td>-->
+<!--                            <td class="mailbox-name" id="date"></td>-->
+<!--                            <td class="mailbox-subject"><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_report_officer/Complaint.php">ไม่ได้รับสินค้าตามที่กำหนด</a></td>-->
+<!--                            <td class="mailbox-attachment" id="link"></td>-->
+<!--                            <td class="mailbox-date" id="detail"></td>-->
+<!--                            <td class="mailbox-date" id="status"></td>-->
+<!--                        </tr>-->
 
 <!--                        <tr>-->
 <!--                            <td>2</td>-->

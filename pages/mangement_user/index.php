@@ -57,15 +57,16 @@ $detail = $member->getUserDetail();
                             <label id="repeat_new_password_label" for="repeat_new_password">ยืนยันรหัสผ่านใหม่</label>
                             <input type="password" class="form-control" id="repeat_new_password">
                         </div>
+                        <p style="color: crimson;">*ต้องการเปลี่ยนชื่อกรุณาติดต่อเจ้าหน้าที่</p>
                         <div class="form-group">
                             <label for="FName">ชื่อจริง</label>
                             <input type="text" class="form-control" value="<?php echo $detail->firstName; ?>" id="FName"
-                                   required>
+                                   readonly>
                         </div>
                         <div class="form-group">
                             <label for="LName">นามสกุล</label>
                             <input type="text" class="form-control" value="<?php echo $detail->lastName; ?>" id="LName"
-                                   required>
+                                   readonly>
                         </div>
 
                     </div>

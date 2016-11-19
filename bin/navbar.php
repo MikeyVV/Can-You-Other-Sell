@@ -31,7 +31,7 @@ if($_SESSION['idMember']) {
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/ad/"><i class="fa fa-window-restore" aria-hidden="true"></i>&nbsp&nbspจัดการโฆษณา</a></li>
-            <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_report_officer/management_report_officer.php"><i class="fa fa-balance-scale" aria-hidden="true"></i>&nbsp&nbspดูเรื่องร้องเรียนจากสมาชิก</a></li>
+            <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_report_officer/management_report_officer.php"><i class="fa fa-balance-scale" aria-hidden="true"></i>&nbsp&nbspจัดการเรื่องเรียนจากสมาชิก</a></li>
             <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_fv/index.php"><i class="fa fa-star" aria-hidden="true"></i>&nbsp&nbspจัดการสินค้าที่สนใจ</a></li>
             <li><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/login/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp&nbspออกจากระบบ</a></li>
           </ul>

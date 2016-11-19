@@ -18,7 +18,16 @@
     <script type="text/javascript">
         function delete_id(idPost,idMemder) {
             if (confirm('Sure To Remove This Record ?')) {
+                $.post("callRest.php",
+                    {
+                        idPost: idPost,
+                        idMemder : idMemder
+                    }
+                    , function (data, status) {
+                        if (status === "success") {
 
+                        }
+                    });
             }
         }
     </script>

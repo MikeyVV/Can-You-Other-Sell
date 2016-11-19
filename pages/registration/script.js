@@ -208,6 +208,7 @@ user_signup_form.submit(function (e) {
                 if (status === "success") {
                     if(!data.boolean){
                         addUserToDB();
+
                     }
                 }
 
