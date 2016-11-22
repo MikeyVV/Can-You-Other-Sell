@@ -93,6 +93,22 @@
     border-radius: 0;
 }
 
+.panel {
+    border-radius: 0;
+}
+
+.panel-group .panel {
+    border-radius: 0;
+}
+
+.panel-heading {
+    border-radius: 0;
+}
+
+.thumbnail {
+    border-radius: 0;
+}
+
 /*จากนี้ไปจะเป็น CSS ที่เขียนขึ้นมาเอง เปลี่ยนได้*/
 
 /*สีพื้นหลังของเว็บ*/

@@ -88,7 +88,7 @@ select {
                   </div><!-- /.pull-right -->
                 </div>
                 <br>
-                <div class="table-responsive mailbox-messages">
+                <div class="table-responsive mailbox-messages cyos-card cyos-table-white">
                   <table class="table table-hover table-striped">
                       <thead>
                       <!-- Check all button -->

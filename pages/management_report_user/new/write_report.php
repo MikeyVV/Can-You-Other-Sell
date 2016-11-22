@@ -26,9 +26,6 @@
                 </div>
             </div>
             <div class="row">
-                <!--ประเภทสินค้ายอดนิยม-->
-                <?php require("../../../bin/popularProduct.php"); ?>
-                <!--/ประเภทสินค้ายอดนิยม-->
             </div>
         </div>
     </div>

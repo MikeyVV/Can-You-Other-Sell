@@ -41,7 +41,6 @@ $c = json_decode($c->showListComplaintsUser());
             </div>
             <div class="row">
                 <!--ประเภทสินค้ายอดนิยม-->
-                <?php require("../../bin/popularProduct.php"); ?>
                 <!--/ประเภทสินค้ายอดนิยม-->
             </div>
         </div>
@@ -75,7 +74,7 @@ $c = json_decode($c->showListComplaintsUser());
                 </div>
                 <br>
 
-                <div class="table-responsive mailbox-messages">
+                <div class="table-responsive mailbox-messages cyos-card cyos-table-white">
                     <table class="table table-hover table-striped">
                         <tbody>
 
