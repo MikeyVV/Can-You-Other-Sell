@@ -11,8 +11,6 @@
  * import database connect class
  */
 session_start();
-require("db.php");
-
 
 class Member extends db
 {
@@ -153,6 +151,15 @@ class Member extends db
         mysqli_query($this->db_link, "SET NAMES UTF8");
         $idMember = mysqli_real_escape_string($this->db_link, $this->idMember);
         $sql = "SELECT `email`, `firstName`, `lastName`, `phoneNumber`, `address`, `lineID`, `facebook` FROM `CYOS_Member` WHERE `idMember` = '$idMember' ";
+        $result = mysqli_query($this->db_link, $sql);
+        return mysqli_fetch_object($result);
+    }
+
+    public function getUserDetailById($idMember)
+    {
+        mysqli_query($this->db_link, "SET NAMES UTF8");
+        $idMember = mysqli_real_escape_string($this->db_link, $idMember);
+        $sql = "SELECT `email`, `firstName`, `lastName`, `phoneNumber`, `address`, `lineID`, `facebook`, `totalVote`, `rate`, `rateSum` FROM `CYOS_Member` WHERE `idMember` = '$idMember' ";
         $result = mysqli_query($this->db_link, $sql);
         return mysqli_fetch_object($result);
     }

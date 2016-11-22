@@ -5,7 +5,7 @@
  * Date: 10/11/2559
  * Time: 14:44
  */
-
+session_start();
 
 class db
 {

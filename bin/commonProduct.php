@@ -1,57 +1,41 @@
+<?php
+
+
+require("classes/PostProduct.php");
+
+$detail = new PostProduct();
+
+$out = json_decode($detail->getRecentProduct(8));
+?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
 <div class="row">
-
+    <?php for ($i = 0; $i < count($out->lists); $i++) { ?>
     <div class="col-sm-3">
         <div class="thumbnail">
             <div class="thumbnail popular-product-img-thumbnail">
-                <a href="#"><img src="http://www.thaimobilecenter.com/home/img_stock/2016322_45462.jpg"></a>
+                <div id="img"><img src="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/img/products/<?php echo $out->lists[$i]->nameImage ?>" style="width:100px;height:100px;"></div>
             </div>
             <div class="caption">
-                <a href="#"><p>iPhone SE 64GB สี white Gold</p></a>
-                <p>ราคา 16,000 บาท</p>
-                <p>พระนคร, กรุงเทพฯ</p>
+                <a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/detail/ProductDetail.php?idPost=<?php echo $out->lists[$i]->idPost ?>"><p><?php echo $out->lists[$i]->name ?></p></a>
+                <p><?php echo $out->lists[$i]->price ?></p>
+                <p><?php echo $out->lists[$i]->address ?></p>
             </div>
         </div>
     </div>
-
-    <div class="col-sm-3">
-        <div class="thumbnail">
-            <div class="thumbnail popular-product-img-thumbnail">
-                <a href="#"><img src="http://www.tanasiri.com/product/images_chair/45.jpg"></a>
-            </div>
-            <div class="caption">
-                <a href="#"><p>เก้าอี้งานวัด สีแดง</p></a>
-                <p>ราคา 500 บาท</p>
-                <p>บางแสน, ชลบุรี</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-3">
-        <div class="thumbnail">
-            <div class="thumbnail popular-product-img-thumbnail">
-                <a href="#"><img src="http://g.lnwfile.com/_/g/_raw/is/io/0u.jpg"></a>
-            </div>
-            <div class="caption">
-                <a href="#"><p>เครื่องซักผ้าชนิดถังเดียว</p></a>
-                <p>ราคา 20,000 บาท</p>
-                <p>บางละมุง, ชลบุรี</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-3">
-        <div class="thumbnail">
-            <div class="thumbnail popular-product-img-thumbnail">
-                <a href="#"><img src="http://th-live-02.slatic.net/p/edrs-sheer-sleeve-cut-midi-skirt-4574-3598457-2c036a874c16cf2b1ce7988bd8794440-webp-catalog_233.jpg"></a>
-            </div>
-            <div class="caption">
-                <a href="#"><p>เดรส sheer sleeve cut midi skirt</p></a>
-                <p>ราคา 199 บาท</p>
-                <p>พัทยา, ชลบุรี</p>
-            </div>
-        </div>
-    </div>
-
+        <?php
+    }
+    ?>
 </div>
 <div class="row">
 
@@ -107,3 +91,5 @@
         </div>
     </div>
 </div>
+</body>
+</html>

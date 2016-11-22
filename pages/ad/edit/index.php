@@ -49,8 +49,8 @@
                 <div class="form-group">
                     <label id="ad_status_label" for="ad_status">สถานะ</label>
                     <select class="form-control" id="ad_status">
-                        <option value="0">ปกติ</option>
-                        <option value="1">หมดอายุ</option>
+                        <option value="0">หมดอายุ</option>
+                        <option value="1">แสดง</option>
                         <option value="2">ระงับ</option>
                     </select>
                 </div>
@@ -60,7 +60,7 @@
                            required>
                 </div>
                 <div class="form-group" style="text-align: center">
-                    <img id="ad_img" style="height: 14vh;" class="cyos-center img-thumbnail">
+                    <img id="ad_img" src="" style="height: 14vh;" class="cyos-center img-thumbnail">
                 </div>
                 <div class="form-group">
                     <label id="exp_label" for="ad_exp">ต่ออายุ</label>
@@ -149,11 +149,11 @@
                     adImg: ad_img_input.val(),
                     adURL: ad_img_input.val(),
                     adPrice: ad_price.val(),
-                    adStatus: ad_status.prop("selectedIndex"),
-                    adExp: ad_exp.prop("selectedIndex")
+                    adStatus: $("#ad_status option:selected").val(),
+                    adExp: $("#ad_exp option:selected").val()
                 }, function (data, status) {
                     if(status === "success"){
-                        location.reload();
+                        location.assign("edit_ad_sec.php?idAd=<?php echo $_GET['idAd']; ?>");
                     }
                 });
         });

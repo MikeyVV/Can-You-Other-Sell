@@ -16,16 +16,17 @@
 
     </script>
     <script type="text/javascript">
-        function delete_id(idPost,idMemder) {
+        function delete_id(idPost, idMemder) {
             if (confirm('Sure To Remove This Record ?')) {
-                $.post("callRest.php",
+                $.post("callDelete.php",
                     {
                         idPost: idPost,
-                        idMemder : idMemder
+                        idMember: idMemder
                     }
                     , function (data, status) {
                         if (status === "success") {
-
+                            alert("success");
+                            window.location.href = 'index.php';
                         }
                     });
             }
@@ -137,15 +138,30 @@ $query = $favor->getPostFavorite($idM);
                                     </div>
                                 </td>
                                 <td class="mailbox-name"><?php echo $row['date']; ?></td>
-                                <td class="mailbox-subject"><a></a><?php echo $row['name']; ?></td>
+                                <td class="mailbox-subject"><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/detail/ProductDetail.php?idPost=<?php echo $row['idPost']; ?>"><?php echo $row['name']; ?></a></td>
                                 <td class="mailbox-attachment"><?php echo $row['nameCategory']; ?></td>
                                 <td class="mailbox-date"><?php echo $row['price']; ?></td>
                                 <td class="mailbox-date"><?php
-                                    echo $row['status']; ?></td>
+
+                                    if ($row['status'] == "1") {
+                                        echo "ประกาศขาย";
+                                    }
+                                    if ($row['status'] == "2") {
+                                        echo "สินค้าหมด";
+                                    }
+                                    if ($row['status'] == "0") {
+                                        echo "ยกเลิกการขาย";
+                                    }
+                                    if ($row['status'] == "3") {
+                                        echo "ขายแล้ว";
+                                    }
+                                    ?></td>
+
 
                                 <td>
                                 <td class="mailbox-date"><a
-                                        href="javascript:delete_id(<?php echo $row["idPost"]; ?>,<?php echo $row["idMember"]; ?>)">Delete</a></td>
+                                        href="javascript:delete_id(<?php echo $row["idPost"]; ?>,<?php echo $row["idMember"]; ?>)">Delete</a>
+                                </td>
 
 
                                 <!-- /.btn-group --></td>

@@ -1,3 +1,8 @@
+<?php
+require ("../../classes/management_complaints.php");
+$c = new Management_complaints();
+$c = json_decode($c->showListComplaintsUser());
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,12 +70,7 @@
 
                     <div class="btn-group"></div>
                     <div class="pull-right">
-                        1-50/200
-                        <div class="btn-group">
-                            <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                            <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                        </div><!-- /.btn-group -->
-                        <a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_report_user/write_report.php" class="btn btn-default" role="button">เพิ่มเรื่องร้องเรียน</i> </a>
+                        <a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_report_user/new/write_report.php" class="btn btn-default" role="button">เพิ่มเรื่องร้องเรียน</i> </a>
                     </div><!-- /.pull-right -->
                 </div>
                 <br>
@@ -78,80 +78,74 @@
                 <div class="table-responsive mailbox-messages">
                     <table class="table table-hover table-striped">
                         <tbody>
+
                         <tr>
                             <!-- Check all button -->
                             <th>No.</th>
-                            <th class="mailbox-name">วัน/เดือน/ปี <i class="fa fa-fw fa-sort-down"></i></th>
-                            <th class="mailbox-subject">หัวเรื่อง <i class="fa fa-fw fa-sort-down"></i></th>
-                            <th class="mailbox-attachment">ลิงค์ประกาศ <i class="fa fa-fw fa-sort-down"></i></th>
-                            <th class="mailbox-date">ประเภทเรื่องร้องเรียน <i class="fa fa-fw fa-sort-down"></i></th>
-                            <th class="mailbox-date">สถานะ <i class="fa fa-fw fa-sort-down"></i></th>
+                            <th class="mailbox-name">วัน/เดือน/ปี</th>
+                            <th class="mailbox-subject">หัวเรื่อง</th>
+                            <th class="mailbox-attachment">ลิงค์ประกาศ</th>
+                            <th class="mailbox-date">ประเภทเรื่องร้องเรียน</th>
+                            <th class="mailbox-date">สถานะ</th>
                         </tr>
 
-                        <tr>
-                            <td>1</td>
-                            <td class="mailbox-name">05/09/2559</td>
-                            <td class="mailbox-subject"><a href="#">ไม่ได้รับสินค้าตามที่กำหนด</a></td>
-                            <td class="mailbox-attachment"><a href="www.cyos.com/vehicles/train/products.php?id=vt24352">www.cyos.com/vehicles/train/pr...</a></td>
-                            <td class="mailbox-date">สินค้าไม่ตรงกับประกาศ</td>
-                            <td class="mailbox-date">รอดำเนินการ</td>
-                        </tr>
+                        <?php
+                        $num = count($c->list);
+                        for($i = 0; $i < $num; $i++){
+                            echo "<tr><td>".($i+1)."</td>";
+                            echo "<td class=\"mailbox-name\">".mb_substr($c->list[$i]->date, 0,10, 'UTF-8')."</td>";
+                            echo "<td class=\"mailbox-subject\">".$c->list[$i]->topic."</td>";
+                            echo "<td class=\"mailbox-attachment\"><a href=\"".$c->list[$i]->linkComplaints."\">".mb_substr($c->list[$i]->linkComplaints, 0,30, 'UTF-8')."...".mb_substr($c->list[$i]->linkComplaints,strlen($c->list[$i]->linkComplaints)-5,strlen($c->list[$i]->linkComplaints), 'UTF-8')."</a></td>";
+                            echo "<td class=\"mailbox-date\">";
+                                if($c->list[$i]->category == 1){
+                                    echo "หมวดสินค้าผิดประเภท";
+                                }elseif($c->list[$i]->category == 2){
+                                    echo "สินค้าผิดกฎหมาย";
+                                }elseif($c->list[$i]->category == 3){
+                                    echo "ผู้ขายทำผิดกฎของเว็บ";
+                                }elseif($c->list[$i]->category == 4){
+                                    echo "ไม่ได้รับสินค้า";
+                                }
+                            echo "</td>";
+                            echo "<td class=\"mailbox-date\">";
+                                if($c->list[$i]->status == 0){
+                                    echo "รอดำเนินการ";
+                                }elseif($c->list[$i]->status == 1){
+                                    echo "ดำเนินการแล้ว (".$c->list[$i]->reply.")";
+                                }
+                            echo "</td>";
+                        }
 
-                        <tr>
-                            <td>2</td>
-                            <td class="mailbox-name">10/09/2559</td>
-                            <td class="mailbox-subject"><a href="#">ถูกโกง</a></td>
-                            <td class="mailbox-attachment"><a href="www.cyos.com/vehicles/car/products.php?id=vt1154">www.cyos.com/vehicles/train/pr...</a></td>
-                            <td class="mailbox-date">ไม่ได้สินค้า</td>
-                            <td class="mailbox-date">ดำเนินการเสร็จสิ้น(เราได้แบนสมาชิกที่ชื่อ....เรียบร้อบแล้ว)</td>
-                        </tr>
+                        ?>
+
+<!--                        <tr>-->
+<!--                            <td>1</td>-->
+<!--                            <td class="mailbox-name">05/09/2559</td>-->
+<!--                            <td class="mailbox-subject"><a href="#">ไม่ได้รับสินค้าตามที่กำหนด</a></td>-->
+<!--                            <td class="mailbox-attachment"><a href="www.cyos.com/vehicles/train/products.php?id=vt24352">www.cyos.com/vehicles/train/pr...</a></td>-->
+<!--                            <td class="mailbox-date">สินค้าไม่ตรงกับประกาศ</td>-->
+<!--                            <td class="mailbox-date">รอดำเนินการ</td>-->
+<!--                        </tr>-->
+<!---->
+<!--                        <tr>-->
+<!--                            <td>2</td>-->
+<!--                            <td class="mailbox-name">10/09/2559</td>-->
+<!--                            <td class="mailbox-subject"><a href="#">ถูกโกง</a></td>-->
+<!--                            <td class="mailbox-attachment"><a href="www.cyos.com/vehicles/car/products.php?id=vt1154">www.cyos.com/vehicles/train/pr...</a></td>-->
+<!--                            <td class="mailbox-date">ไม่ได้สินค้า</td>-->
+<!--                            <td class="mailbox-date">ดำเนินการเสร็จสิ้น(เราได้แบนสมาชิกที่ชื่อ....เรียบร้อบแล้ว)</td>-->
+<!--                        </tr>-->
                         </tbody>
                     </table><!-- /.table -->
                 </div><!-- /.mail-box-messages -->
             </div><!-- /.box-body -->
-            <div class="box-footer no-padding">
-                <div class="mailbox-controls">
-                    <!-- Check all button -->
-
-                    <div class="pull-right">
-                        1-50/200
-                        <div class="btn-group">
-                            <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                            <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                        </div><!-- /.btn-group -->
-                    </div><!-- /.pull-right -->
-                </div>
-            </div>
 
         </div>
 
         <!-- /ทำงานที่นี่ -->
         <div class="col-sm-2">
             <!--แสดงสินค้าแนะนำ-->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <b>สินค้าแนะนำ</b>
-                </div>
-                <div class="panel-body">
-                    <div style="text-align:center" class="list-group">
-                        <img
-                            src="http://th-live-01.slatic.net/p/toshiba-tuueyn-1-pratuu-curve-live-khnaad-5-khiw-run-gr-b145tznn-siiekhiiyw-7592-0591382-1.jpg"
-                            class="recommend-product img-thumbnail">
-                        <a href="#"><p>ตู้เย็นโตชิบา</p></a>
-                        <p>ราคา 4,000 บาท</p>
-                        <p>พัทยา, ชลบุรี</p>
-                        <img src="https://i.ytimg.com/vi/bMbW4VSHpEg/maxresdefault.jpg"
-                             class="recommend-product img-thumbnail">
-                        <a href="#"><p>รถไฟไทย สไตล์วินเทจ</p></a>
-                        <p>ราคา 120,000,000 บาท</p>
-                        <p>มักกะสัน, กรุงเทพฯ</p>
-                        <img src="http://cp.lnwfile.com/_/cp/_raw/zt/86/7g.jpg" class="recommend-product img-thumbnail">
-                        <a href="#"><p>นาฬิกา TAG</p></a>
-                        <p>ราคา 20,000 บาท</p>
-                        <p>หัวหิน, ประจวบคีรีขัน</p>
-                    </div>
-                </div>
-            </div>
+            <?php require "../../bin/recommendProduct.php"; ?>
             <!--/แสดงสินค้าแนะนำ-->
         </div>
     </div>

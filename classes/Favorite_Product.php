@@ -1,5 +1,6 @@
 <?php
 require("db.php");
+
 class  FavoriteManagement  extends db {
 
  function __construct()
@@ -8,7 +9,7 @@ class  FavoriteManagement  extends db {
         * Database Connect
         */
         $this->Open();
-       
+
     }
     public function getPostFavorite($idM)
     {
@@ -21,6 +22,14 @@ class  FavoriteManagement  extends db {
         $result = mysqli_query($this->db_link, $sql);
         return $result;
     }
- 
+    public function getFavorite($idPost, $idMember)
+    {
+        mysqli_query($this->db_link, "SET NAMES UTF8");
+        //$idMember = mysqli_real_escape_string($this->db_link, $this->idMember);
+        $sql = "SELECT * FROM CYOS_FavorateProduct WHERE idPost = $idPost AND idMember = $idMember";
+        $result = mysqli_query($this->db_link, $sql);
+        return mysqli_num_rows($result);
+    }
 }
+
 ?>

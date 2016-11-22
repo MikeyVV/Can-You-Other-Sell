@@ -2,7 +2,7 @@
 
 // Created SESSION.
 session_start();
-$_SESSION['idMember'] = 1;
+//$_SESSION['idMember'] = 1;
 
 /**
  * Created by PhpStorm.
@@ -60,6 +60,7 @@ class sell_management extends PostProduct
         $this->price = mysqli_real_escape_string($this->db_link, $price);
         $this->detail = mysqli_real_escape_string($this->db_link, $detail);
 
+        //echo "idMember : ".$_SESSION['idMember'];
         mysqli_query($this->db_link, "SET NAMES UTF8");
         $sql = "INSERT INTO `CYOS_PostProduct`(`name`, `price`, `detail`, `view`, `status`, `category`, `idMember`) VALUES (\"".$this->name."\", ".$this->price.", \"".$this->detail."\", 0, 1, ".$this->category.", ".$_SESSION['idMember'].")";
         //echo $sql;
@@ -67,9 +68,11 @@ class sell_management extends PostProduct
 
         $sql = "SELECT idPost FROM `CYOS_PostProduct` WHERE name = \"".$this->name."\" AND category = ".$this->category." AND price = ".$this->price." AND detail = \"".$this->detail."\" AND idMember = ".$_SESSION['idMember']." ORDER BY date DESC LIMIT 1";
         //echo $sql;
-        $this->idPost = mysqli_fetch_object(mysqli_query($this->db_link, $sql))->idPost;
+        $objectIdPost = mysqli_fetch_object(mysqli_query($this->db_link, $sql));
+        $this->idPost = $objectIdPost->idPost;
         //echo $this->idPost;
         $this->addImagePostProduct($this->idPost, $nameImage);
+        echo json_encode($objectIdPost);
         return;
     }
 
@@ -80,6 +83,8 @@ class sell_management extends PostProduct
         mysqli_query($this->db_link, "SET NAMES UTF8");
 
         for($i=0; $i < count($nameImage); $i++){
+            //$type = substr($nameImage[$i], (strpos($nameImage[$i],".")+1));
+            //$sql = "INSERT INTO `CYOS_ProductImage`(`idPost`, `nameImage`) VALUES (".$this->idPost.", \"".$_SESSION['idMember']."-".$idPost."-".($i+1).".".$type."\")";
             $sql = "INSERT INTO `CYOS_ProductImage`(`idPost`, `nameImage`) VALUES (".$this->idPost.", \"".$nameImage[$i]."\")";
             //echo $sql;
             mysqli_query($this->db_link, $sql);
@@ -104,5 +109,6 @@ class sell_management extends PostProduct
 //$sell_management = new sell_management();
 //$sell_management->showProductList(1);
 //$img = array("http://www.carbatterymp.com/wp-content/uploads/2015/05/Honda-Accord-Battery.jpg", "http://car250.com/wp-content/uploads/2014/07/New-Honda-Accord-Hybrid-2014-49.png", "http://www.9carthai.com/wp-content/uploads/2016/02/White-Orchid-Pearl.jpg");
+//$img = array("http://www.carbatterymp.com/wp-content/uploads/2015/05/Honda-Accord-Battery.jpg");
 //$sell_management->postProduct("รถยนต์ฮอนด้า", 1, 1600000, "รถนำเข้า มือหนึ่ง ราคาถู๊ก!! ถูก...", $img);
 //$sell_management->editStatus(2,1);

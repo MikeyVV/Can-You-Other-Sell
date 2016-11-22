@@ -71,15 +71,19 @@ class ad extends db
         $this->adStatus = mysqli_real_escape_string($this->db_link, $adStatus);
         $this->adExp = mysqli_real_escape_string($this->db_link, $adExp);
 
-        $oldExp = mysqli_fetch_object( mysqli_query($this->db_link, "SELECT adExp FROM `CYOS_Ad` WHERE idPost = ".$this->idAd) );
+        $oldExp = mysqli_fetch_object( mysqli_query($this->db_link, "SELECT adExp FROM `CYOS_Ad` WHERE idAd = ".$this->idAd) );
 
         $this->adExp = mysqli_real_escape_string($this->db_link,($oldExp->adExp + $adExp));
+        //echo $this->idAd.":".$this->adExp;
         $sql = "";
-        if($adExp<=0){
-            $sql = "UPDATE `CYOS_Ad` SET `adName` = \"".$this->adName."\", `adLoction` = \"".$this->adLocation."\", `adImg` = \"".$this->adImg."\", `adURL` = \"".$this->adURL."\", `adPrice` = ".$this->adPrice.", `adStatus` = 1, `adExp` = ".$this->adExp." WHERE idPost = ".$idAd;
+        if($this->adStatus == 2){
+            $sql = "UPDATE `CYOS_Ad` SET `adName` = \"".$this->adName."\", `adLoction` = \"".$this->adLocation."\", `adImg` = \"".$this->adImg."\", `adURL` = \"".$this->adURL."\", `adPrice` = ".$this->adPrice.", `adStatus` = 2, `adExp` = ".$this->adExp." WHERE idAd = ".$idAd;
+        }elseif($this->adExp >= 0){
+            $sql = "UPDATE `CYOS_Ad` SET `adName` = \"".$this->adName."\", `adLoction` = \"".$this->adLocation."\", `adImg` = \"".$this->adImg."\", `adURL` = \"".$this->adURL."\", `adPrice` = ".$this->adPrice.", `adStatus` = 1, `adExp` = ".$this->adExp." WHERE idAd = ".$idAd;
         }else{
-            $sql = "UPDATE `CYOS_Ad` SET `adName` = \"".$this->adName."\", `adLoction` = \"".$this->adLocation."\", `adImg` = \"".$this->adImg."\", `adURL` = \"".$this->adURL."\", `adPrice` = ".$this->adPrice.", `adStatus` = ".$this->adStatus.", `adExp` = ".$this->adExp." WHERE idPost = ".$idAd;
+            $sql = "UPDATE `CYOS_Ad` SET `adName` = \"".$this->adName."\", `adLoction` = \"".$this->adLocation."\", `adImg` = \"".$this->adImg."\", `adURL` = \"".$this->adURL."\", `adPrice` = ".$this->adPrice.", `adStatus` = ".$this->adStatus.", `adExp` = ".$this->adExp." WHERE idAd = ".$idAd;
         }
+        //echo $sql;
         $result = mysqli_query($this->db_link, $sql);
 
         return $result;
@@ -137,6 +141,7 @@ class ad extends db
 //$Ad->addAd("ตู้เย็นโตชิบา", "พัทยา, ชลบุรี", "http://th-live-01.slatic.net/p/toshiba-tuueyn-1-pratuu-curve-live-khnaad-5-khiw-run-gr-b145tznn-siiekhiiyw-7592-0591382-1.jpg", "http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/detail/ProductDetail.php?idPost=2", 4000, 100);
 //$Ad->addAd("ตรถไฟไทย สไตล์วินเทจ", "พัทยา, ชลบุรี", "https://pbs.twimg.com/profile_images/583490137385902081/3LoMyqH9.jpg", "http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/detail/ProductDetail.php?idPost=1", 200000000000, 1000);
 //$Ad->addAd("รถยนต์ฮอนด้า", "พัทยา, ชลบุรี", "http://www.carbatterymp.com/wp-content/uploads/2015/05/Honda-Accord-Battery.jpg", "http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/detail/ProductDetail.php?idPost=4", 1600000, 500);
+//$Ad->editAd("12", "Test", "เมือง, ระยอง", "มีสิ หาแปป", "http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/detail/ProductDetail.php?idPost=10", 100000, 2, 100);
 //$Ad->getListAdAll();
 //$Ad->getAd();
 

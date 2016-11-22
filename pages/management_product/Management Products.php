@@ -5,50 +5,6 @@
     <!--CSS, Bootstrap-->
     <?php require("../../bin/header.php"); ?>
 
-<script type="text/javascript">
-$(document).ready(function(){
-    $('#select_all').on('click',function(){
-        if(this.checked){
-            $('.checkbox').each(function(){
-                this.checked = true;
-            });
-        }else{
-             $('.checkbox').each(function(){
-                this.checked = false;
-            });
-        }
-    });
-
-    $('.checkbox').on('click',function(){
-        if($('.checkbox:checked').length == $('.checkbox').length){
-            $('#select_all').prop('checked',true);
-        }else{
-            $('#select_all').prop('checked',false);
-        }
-    });
-
-
-});
-</script>
-<script>
-$(document).ready(function(){
-    $("#country").hide();
-    $('#select_all').on('click',function(){
-      if( $('.checkbox:checked').length > 0 ) {
-          $("#country").show();
-      } else {
-          $("#country").hide();
-      }
-    });
-  $('.checkbox').click(function() {
-      if( $('.checkbox:checked').length > 0 ) {
-          $("#country").show();
-      } else {
-          $("#country").hide();
-      }
-  });
-});
-</script>
 <style>
 select {
     width: 100%;
@@ -95,7 +51,7 @@ select {
           <!--ทำงานที่นี่ ทำงานที่นี่    ทำงานที่นี่ ทำงานที่นี่-->
 
               <div class="box-header with-border">
-                <h3 class="box-title">จัดการขายสินค้า</h3>
+                <h3 class="box-title">จัดการขายสินค้า&nbsp;&nbsp;<span style="font-size: 15px; color: red;">** เมื่อเปลี่ยนสถานะสินค้าเป็น "ขายแล้ว" จะไม่สามารถเปลี่ยนแปลงสถานะสินค้าได้อีก **</span></h3>
 
                 <div class="box-tools pull-right">
                   <div class="has-feedback">
@@ -111,11 +67,12 @@ select {
 
                   <div class="btn-group">
                     <form>
-    <select id="country" name="country" >
-      <option value="au">สถานะสินค้า</option>
-      <option value="au">ขายแล้ว</option>
-      <option value="ca">ประกาศขาย</option>
-      <option value="usa">ยกเลิกการขาย</option>
+    <select id="status" name="status" >
+        <option value="none">---- แก้ไขสถานะ ----</option>
+        <option value="1">ประกาศขาย</option>
+        <option value="2">สินค้าหมด</option>
+        <option value="0">ยกเลิกการขาย</option>
+        <option value="3">ขายแล้ว</option>
     </select>
   </form>
                   </div>
@@ -127,84 +84,24 @@ select {
                       <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
                       <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
                     </div><!-- /.btn-group -->
-                    <a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/form_post.php" class="btn btn-default" role="button"">ประกาศขายสินค้า</a>
+                    <a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/new/form_post.php" class="btn btn-default" role="button"">ประกาศขายสินค้า</a>
                   </div><!-- /.pull-right -->
                 </div>
                 <br>
                 <div class="table-responsive mailbox-messages">
                   <table class="table table-hover table-striped">
-                    <tbody>
-                      <tr>
-                        <!-- Check all button -->
-                        <td><input type="checkbox" id="select_all"  /></td>
-                        <td></td>
-                        <td class="mailbox-name">วัน/เดือน/ปี</a>&nbsp<i class="fa fa-fw fa-sort-down"></i></td>
-                        <td class="mailbox-subject"><b>ชื่อประกาศ</b>&nbsp<i class="fa fa-fw fa-sort-down"></i> </td>
-                        <td class="mailbox-attachment">ประเภทของสินค้า&nbsp<i class="fa fa-fw fa-sort-down"></i></td>
-                        <td class="mailbox-date">ราคาของสินค้า&nbsp<i class="fa fa-fw fa-sort-down"></i></td>
-                        <td class="mailbox-date">สถานะ&nbsp<i class="fa fa-fw fa-sort-down"></i></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td><input type="checkbox" class="checkbox" value="1" /><td>
-                        <td class="mailbox-name">05/05/2559</td>
-                        <td class="mailbox-subject"><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/ProductDetail.php">รถไฟมือสองราคาถูกจ้า</a></td>
-                        <td class="mailbox-attachment">ยานพาหนะ</td>
-                        <td class="mailbox-date">200,000,000,000</td>
-                          <td class="mailbox-date">ประกาศขายแล้ว</td>
-                        <td>
-                          <button ><i class="fa fa-edit"></i></button>
-
-                        <!-- /.btn-group --></td>
-                      </tr>
-                      <tr>
-                        <td><input type="checkbox" class="checkbox" value="1" id="check"/><td>
-                        <td class="mailbox-name">18/02/2559</td>
-                        <td class="mailbox-subject"><a href="#">กล้องถ่ายสาว</a></td>
-                        <td class="mailbox-attachment">กล้องถ่ายภาพ</td>
-                        <td class="mailbox-date">200,000</td>
-                          <td class="mailbox-date">ขายแล้ว</td>
-                        <td>
-                          <button ><i class="fa fa-edit"></i></button>
-
-                        <!-- /.btn-group --></td>
-                      </tr>
-                      <tr>
-                        <td><input type="checkbox" class="checkbox" value="1" id="check"/><td>
-                        <td class="mailbox-name">05/02/2559</td>
-                        <td class="mailbox-subject"><a href="#">คอมมมมมม</a></td>
-                        <td class="mailbox-attachment">คอมพิวเตอร์</td>
-                        <td class="mailbox-date">200</td>
-                          <td class="mailbox-date">ประกาศขายแล้ว</td>
-                        <td>
-                          <button ><i class="fa fa-edit"></i></button>
-
-                        <!-- /.btn-group --></td>
-                      </tr>
-                      <tr>
-                        <td><input type="checkbox" class="checkbox" value="1" id="check"/><td>
-                        <td class="mailbox-name">05/05/2559</td>
-                        <td class="mailbox-subject"><a href="#">รถเจ้ามือ</a></td>
-                        <td class="mailbox-attachment">ยานพาหนะ</td>
-                        <td class="mailbox-date">200,000,000,000,000</td>
-                          <td class="mailbox-date">ประกาศขายแล้ว</td>
-                        <td>
-                          <button ><i class="fa fa-edit"></i></button>
-
-                        <!-- /.btn-group --></td>
-                      </tr>
-                      <tr>
-                        <td><input type="checkbox" class="checkbox" value="1" id="check"/><td>
-                        <td class="mailbox-name">05/05/2559</td>
-                        <td class="mailbox-subject"><a href="#">มอเตอร์ไซน์</a></td>
-                        <td class="mailbox-attachment">ยานพาหนะ</td>
-                        <td class="mailbox-date">20</td>
-                          <td class="mailbox-date">ประกาศขายแล้ว</td>
-                        <td>
-                          <button ><i class="fa fa-edit"></i></button>
-
-                        <!-- /.btn-group --></td>
-                      </tr>
+                      <thead>
+                      <!-- Check all button -->
+                      <th><input type="checkbox" id="select_all" class="checkbox" /></th>
+                      <th></th>
+                      <th class="mailbox-name">วัน/เดือน/ปี</a>&nbsp<i class="fa fa-fw fa-sort-down"></i></th>
+                      <th class="mailbox-subject"><b>ชื่อประกาศ</b>&nbsp<i class="fa fa-fw fa-sort-down"></i> </th>
+                      <th class="mailbox-attachment">ประเภทของสินค้า&nbsp<i class="fa fa-fw fa-sort-down"></i></th>
+                      <th class="mailbox-date">ราคาของสินค้า&nbsp<i class="fa fa-fw fa-sort-down"></i></th>
+                      <th class="mailbox-date">สถานะ&nbsp<i class="fa fa-fw fa-sort-down"></i></th>
+                      <th class="mailbox-date">แก้ไข</th>
+                      </thead>
+                    <tbody id="table">
                     </tbody>
                   </table><!-- /.table -->
                 </div><!-- /.mail-box-messages -->
@@ -268,7 +165,178 @@ select {
   </div>
 </footer>
 
-
-
 </body>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        loadTable();
+
+        $("#status").hide();
+
+        function loadTable() {
+            var idMember = "<?php echo $_SESSION['idMember']; ?>";
+
+            $.post("ctrl.php",
+                {
+                    function: "showProductList",
+                    idMember: idMember
+                }
+                , function (data, status) {
+                    data = JSON.parse(data);
+                    if (status === "success"){
+                        for (var i = 0; i < data.lists.length; i++){
+                            var statusName = "";
+                            if(data.lists[i].status == 0)statusName = "ยกเลิกการขาย";
+                            else if(data.lists[i].status == 1)statusName = "ประกาศขาย";
+                            else if(data.lists[i].status == 2)statusName = "สินค้าหมด";
+                            else if(data.lists[i].status == 3)statusName = "ขายแล้ว";
+
+                            if(data.lists[i].status == 3){
+                                $('#table').append("<tr><td><td><td class='mailbox-name'>"+data.lists[i].DATE+"</td><td class='mailbox-subject'><a href='../post/detail/ProductDetail.php?idPost="+data.lists[i].idPost+"'>"+data.lists[i].name+"</a></td> <td class='mailbox-attachment'>"+data.lists[i].nameCategory+"</td> <td class='mailbox-date'>"+data.lists[i].price+"</td> <td class='mailbox-date'>"+statusName+"</td> <td><a href='../post/edit/form_edit.php?idPost="+data.lists[i].idPost+"' class='btn btn-warning'><i class='fa fa-edit'></i></a></td> </tr>");
+                            }else{
+                                $('#table').append("<tr><td><input type='checkbox' class='checkbox'  name='checkbox' value='"+data.lists[i].idPost+"' /><td><td class='mailbox-name'>"+data.lists[i].DATE+"</td><td class='mailbox-subject'><a href='../post/detail/ProductDetail.php?idPost="+data.lists[i].idPost+"'>"+data.lists[i].name+"</a></td> <td class='mailbox-attachment'>"+data.lists[i].nameCategory+"</td> <td class='mailbox-date'>"+data.lists[i].price+"</td> <td class='mailbox-date'>"+statusName+"</td> <td><a href='../post/edit/form_edit.php?idPost="+data.lists[i].idPost+"' class='btn btn-warning'><i class='fa fa-edit'></i></a></td> </tr>");
+                            }
+                        }
+                    }else{
+                        alert("fail");
+                    }
+                });
+        }
+
+
+        function refreshTable() {
+            var idMember = "<?php echo $_SESSION['idMember']; ?>";
+
+            $.post("ctrl.php",
+                {
+                    function: "showProductList",
+                    idMember: idMember
+                }
+                , function (data, status) {
+                    data = JSON.parse(data);
+                    if (status === "success"){
+                        $('#table').html("");
+                        for (var i = 0; i < data.lists.length; i++){
+                            var statusName = "";
+                            if(data.lists[i].status == 0)statusName = "ยกเลิกการขาย";
+                            else if(data.lists[i].status == 1)statusName = "ประกาศขาย";
+                            else if(data.lists[i].status == 2)statusName = "สินค้าหมด";
+                            else if(data.lists[i].status == 3)statusName = "ขายแล้ว";
+
+                            if(data.lists[i].status == 3){
+                                $('#table').append("<tr><td><td><td class='mailbox-name'>"+data.lists[i].DATE+"</td><td class='mailbox-subject'><a href='../post/detail/ProductDetail.php?idPost="+data.lists[i].idPost+"'>"+data.lists[i].name+"</a></td> <td class='mailbox-attachment'>"+data.lists[i].nameCategory+"</td> <td class='mailbox-date'>"+data.lists[i].price+"</td> <td class='mailbox-date'>"+statusName+"</td> <td><a href='../post/edit/form_edit.php?idPost="+data.lists[i].idPost+"' class='btn btn-warning'><i class='fa fa-edit'></i></a></td> </tr>");
+                            }else{
+                                $('#table').append("<tr><td><input type='checkbox' class='checkbox'  name='checkbox' value='"+data.lists[i].idPost+"' /><td><td class='mailbox-name'>"+data.lists[i].DATE+"</td><td class='mailbox-subject'><a href='../post/detail/ProductDetail.php?idPost="+data.lists[i].idPost+"'>"+data.lists[i].name+"</a></td> <td class='mailbox-attachment'>"+data.lists[i].nameCategory+"</td> <td class='mailbox-date'>"+data.lists[i].price+"</td> <td class='mailbox-date'>"+statusName+"</td> <td><a href='../post/edit/form_edit.php?idPost="+data.lists[i].idPost+"' class='btn btn-warning'><i class='fa fa-edit'></i></a></td> </tr>");
+                            }
+                            //alert("Complete");
+                        }
+                    }else{
+                        alert("fail");
+                    }
+                    $('#select_all').prop('checked',false);
+                });
+        }
+
+
+        $('body').on('click', '.checkbox', function(){
+            if( $('.checkbox:checked').length > 0 ) {
+                $("#status").show();
+                //alert("show");
+            } else {
+                $("#status").hide();
+                //alert("hide");
+            }
+        });
+        $('body').on('click', '#select_all', function(){
+            if(this.checked){
+                $('.checkbox').each(function(){
+                    this.checked = true;
+                });
+            }else{
+                $('.checkbox').each(function(){
+                    this.checked = false;
+                    $("#status").hide();
+                });
+            }
+        });
+        $('body').on('click', '.checkbox', function(){
+            if($('.checkbox:checked').length == $('.checkbox').length){
+                $('#select_all').prop('checked',true);
+            }else{
+                $('#select_all').prop('checked',false);
+            }
+        });
+
+        $('body').on('change', '#status', function(){
+            var selectStatus = $('#status option:selected').val();
+            $('input[name="checkbox"]:checked').each(function() {
+                //alert(this.value);
+                if(selectStatus == "1"){
+                    $.post("ctrl.php",
+                        {
+                            function: "editStatus",
+                            idPost: this.value,
+                            status: 1
+                        }
+                        , function (data, status) {
+                            if (status != "success") alert("fail");
+                            else {
+                                refreshTable();
+                                $('#status option[value=none]').prop('selected', true);
+                                setTimeout(function(){ $("#status").hide(); }, 50);
+                            }
+                        });
+                }else if(selectStatus == "2"){
+                    $.post("ctrl.php",
+                        {
+                            function: "editStatus",
+                            idPost: this.value,
+                            status: selectStatus
+                        }
+                        , function (data, status) {
+                            if (status != "success") alert("fail");
+                            else {
+                                refreshTable();
+                                $('#status option[value=none]').prop('selected', true);
+                                setTimeout(function(){ $("#status").hide(); }, 50);
+                            }
+                        });
+                }else if(selectStatus == "3"){
+                    $.post("ctrl.php",
+                        {
+                            function: "editStatus",
+                            idPost: this.value,
+                            status: selectStatus
+                        }
+                        , function (data, status) {
+                            if (status != "success") alert("fail");
+                            else {
+                                refreshTable();
+                                $('#status option[value=none]').prop('selected', true);
+                                setTimeout(function(){ $("#status").hide(); }, 50);
+                            }
+                        });
+                }else if(selectStatus == "0"){
+                    $.post("ctrl.php",
+                        {
+                            function: "editStatus",
+                            idPost: this.value,
+                            status: selectStatus
+                        }
+                        , function (data, status) {
+                            if (status != "success") alert("fail");
+                            else {
+                                refreshTable();
+                                $('#status option[value=none]').prop('selected', true);
+                                setTimeout(function(){ $("#status").hide(); }, 50);
+                            }
+                        });
+                }
+            });
+
+        });
+    });
+</script>
+
 </html>

@@ -10,6 +10,12 @@
 /*
  * import database connect class
  */
+
+
+// Created SESSION.
+session_start();
+
+
 require ("db.php");
 
 class PostProduct extends db
@@ -55,7 +61,7 @@ class PostProduct extends db
     {
         mysqli_query($this->db_link, "SET NAMES UTF8");
         $out = "{\"detail\": ";
-        $postProduct = mysqli_query($this->db_link, "SELECT name, address, detail, price, firstName, lastName, rate, totalVote, phoneNumber, lineID, facebook, idMember, status, view FROM `CYOS_PostProduct` NATURAL JOIN `CYOS_Member` WHERE idPost = ".$idPost);
+        $postProduct = mysqli_query($this->db_link, "SELECT p.name, m.address, p.detail, p.price, m.firstName, m.lastName, m.rate, m.totalVote, m.phoneNumber, m.lineID, m.facebook, m.idMember, p.status, view FROM CYOS_PostProduct p JOIN CYOS_Member m WHERE p.idMember = m.idMember AND idPost = ".$idPost);
         $temPost = mysqli_fetch_object($postProduct);
         $out .= json_encode($temPost);
         $out .= ",\"image\": [";
@@ -69,6 +75,26 @@ class PostProduct extends db
         echo $out;
         $view = ($temPost->view) + 1;
         mysqli_query($this->db_link, "UPDATE `CYOS_PostProduct` SET view = ".$view." WHERE idPost = ".$idPost);
+        return;
+    }
+
+    public function getDetailPostProductForEdit($idPost)
+    {
+        mysqli_query($this->db_link, "SET NAMES UTF8");
+        $out = "{\"detail\": ";
+        $postProduct = mysqli_query($this->db_link, "SELECT p.name, p.detail, p.price, p.category, p.status, view FROM CYOS_PostProduct p JOIN CYOS_Member m WHERE p.idMember = m.idMember AND idPost = ".$idPost);
+        $temPost = mysqli_fetch_object($postProduct);
+        $out .= json_encode($temPost);
+        $out .= ",\"image\": [";
+        $imgList = mysqli_query($this->db_link, "SELECT * FROM `CYOS_ProductImage` WHERE idPost = ".$idPost);
+
+        for ($i=0; $i < $imgList->num_rows; $i++){
+            $out .= json_encode(mysqli_fetch_object($imgList));
+            if($i < ($imgList->num_rows-1)) $out .= ",";
+        }
+        $out .= "]}";
+        echo $out;
+        
         return;
     }
 
@@ -93,7 +119,7 @@ class PostProduct extends db
 
         $out = "{\"lists\" : [";
         while ($id = mysqli_fetch_object($listIdPost)){
-            $sql = "SELECT DISTINCT idPost, name, price, address, nameImage FROM `CYOS_PostProduct` NATURAL JOIN `CYOS_Member` NATURAL JOIN `CYOS_ProductImage` WHERE idPost = ".$id->idPost." LIMIT 1";
+            $sql = "SELECT DISTINCT p.idPost, name, price, address, nameImage FROM CYOS_PostProduct p JOIN CYOS_Member m JOIN CYOS_ProductImage i WHERE p.idMember = m.idMember AND p.idPost = i.idPost AND p.idPost = ".$id->idPost." LIMIT 1";
             //echo $sql;
             $postProduct = mysqli_query($this->db_link, $sql);
 
@@ -126,7 +152,7 @@ class PostProduct extends db
         return;
     }
 
-    public function editDetailPostProduct($idPost, $name, $category, $price, $detail)
+    public function editDetailPostProduct($idPost, $name, $category, $price, $detail, $nameImage)
     {
         $this->idPost = mysqli_real_escape_string($this->db_link, $idPost);
         $this->name = mysqli_real_escape_string($this->db_link, $name);
@@ -138,6 +164,10 @@ class PostProduct extends db
         $sql = "UPDATE `CYOS_PostProduct` SET name = \"".$this->name."\", category = ".$this->category.", price = ".$this->price.", detail = \"".$this->detail."\" WHERE idPost = ".$this->idPost;
         //echo $sql;
         $editPostProduct = mysqli_query($this->db_link, $sql);
+
+        if(isset($nameImage)){
+            $this->editImagePostProduct($idPost, $nameImage);
+        }
         echo $editPostProduct;
         return;
     }

@@ -45,17 +45,7 @@ $c = json_decode($c->showListComplaints());
                 </div><!-- /.box-tools -->
             </div><!-- /.box-header -->
             <div class="box-body no-padding">
-                <div class="mailbox-controls">
 
-                    <div class="btn-group"></div>
-                    <div class="pull-right">
-                        1-50/200
-                        <div class="btn-group">
-                            <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                            <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                        </div><!-- /.btn-group -->
-                    </div><!-- /.pull-right -->
-                </div>
                 <br>
 
                 <div class="table-responsive mailbox-messages">
@@ -64,27 +54,43 @@ $c = json_decode($c->showListComplaints());
                         <tr>
                             <!-- Check all button -->
                             <th>No.</th>
-                            <th class="mailbox-name">ผู้ส่งคำร้อง <i class="fa fa-fw fa-sort-down"></i></th>
-                            <th class="mailbox-name">วัน/เดือน/ปี <i class="fa fa-fw fa-sort-down"></i></th>
-                            <th class="mailbox-subject">หัวเรื่อง <i class="fa fa-fw fa-sort-down"></i></th>
-                            <th class="mailbox-attachment">ลิงค์ประกาศ <i class="fa fa-fw fa-sort-down"></i></th>
-                            <th class="mailbox-date">ประเภทเรื่องร้องเรียน <i class="fa fa-fw fa-sort-down"></i></th>
-                            <th class="mailbox-date">สถานะ <i class="fa fa-fw fa-sort-down"></i></th>
+                            <th class="mailbox-name">ผู้ส่งคำร้อง</th>
+                            <th class="mailbox-name">วัน/เดือน/ปี</th>
+                            <th class="mailbox-subject">หัวเรื่อง</th>
+                            <th class="mailbox-attachment">ลิงค์ประกาศ</th>
+                            <th class="mailbox-date">ประเภทเรื่องร้องเรียน</th>
+                            <th class="mailbox-date">สถานะ</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
                             $num = count($c->list);
-                            echo $num;
                             for($i = 0; $i < $num; $i++){
                                 //$c->list[0]->idMember;
+                                if($c->list[$i]->status == 1){
+                                    continue;
+                                }
                                 echo "<tr><td>".($i+1)."</td>";
                                 echo "<td class=\"mailbox-name\">".$c->list[$i]->firstName." ".$c->list[$i]->lastName."</td>";
-                                echo "<td class=\"mailbox-name\">".$c->list[$i]->date."</td>";
-                                echo "<td class=\"mailbox-subject\"><a href=\"#\">".$c->list[$i]->topic."</a></td>";
-                                echo "<td class=\"mailbox-attachment\"><a href=\"www.cyos.com/vehicles/car/products.php?id=vt1154\">www.cyos.com/vehicles/train/pr...</a></td>";
-                                echo "<td class=\"mailbox-date\">".$c->list[$i]->detail."</td>";
-                                echo "<td class=\"mailbox-date\">".$c->list[$i]->status."</td></tr>";
+                                echo "<td class=\"mailbox-name\">".mb_substr($c->list[$i]->date, 0,10, 'UTF-8')."</td>";
+                                echo "<td class=\"mailbox-subject\"><a href=\"http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/management_report_officer/detail/Complaint.php?id=".$c->list[$i]->idComplaints."\">".$c->list[$i]->topic."</a></td>";
+                                echo "<td class=\"mailbox-attachment\"><a href=\"".$c->list[$i]->linkComplaints."\">".mb_substr($c->list[$i]->linkComplaints, 0,30, 'UTF-8')."...".mb_substr($c->list[$i]->linkComplaints,strlen($c->list[$i]->linkComplaints)-5,strlen($c->list[$i]->linkComplaints), 'UTF-8')."</a></td>";
+                                echo "<td class=\"mailbox-date\">";
+                                    if($c->list[$i]->category == 1){
+                                        echo "หมวดสินค้าผิดประเภท";
+                                    }elseif($c->list[$i]->category == 2){
+                                        echo "สินค้าผิดกฎหมาย";
+                                    }elseif($c->list[$i]->category == 3){
+                                        echo "ผู้ขายทำผิดกฎของเว็บ";
+                                    }elseif($c->list[$i]->category == 4){
+                                        echo "ไม่ได้รับสินค้า";
+                                    }
+                                echo "</td>";
+                                echo "<td class=\"mailbox-date\">";
+                                    if($c->list[$i]->status == 0){
+                                        echo "รอดำเนินการ";
+                                    }
+                                echo "</td></tr>";
 
                             }
                         ?>
@@ -111,19 +117,6 @@ $c = json_decode($c->showListComplaints());
                     </table><!-- /.table -->
                 </div><!-- /.mail-box-messages -->
             </div><!-- /.box-body -->
-            <div class="box-footer no-padding">
-                <div class="mailbox-controls">
-                    <!-- Check all button -->
-
-                    <div class="pull-right">
-                        1-50/200
-                        <div class="btn-group">
-                            <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                            <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                        </div><!-- /.btn-group -->
-                    </div><!-- /.pull-right -->
-                </div>
-            </div>
 
         </div>
     </div>

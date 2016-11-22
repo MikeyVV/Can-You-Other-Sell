@@ -75,7 +75,7 @@ require("db.php");
       $sql = "select nameImage from `CYOS_ComplaintImage` where idComplaints='$this->idComplaints' ";
       $result = mysqli_query($this->db_link, $sql);
 
-      $out .= "\"image\": [";
+      $out = "\"image\": [";
 
       for($i=0; $i < $result->num_rows; $i++){
         $out .= json_encode(mysqli_fetch_object($result));

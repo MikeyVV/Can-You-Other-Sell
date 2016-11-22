@@ -90,7 +90,7 @@
                 <br>
                 <center><h3>ประกาศขายสินค้าเรียบร้อยแล้ว</h3></center>
                 <br>
-                <center><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/ProductDetailWithButton.php" class="btn btn-success" role="button">ตกลง</a> </center>
+                <center><a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/detail/ProductDetail.php?idPost=<?php echo $_GET['idPost']; ?>" class="btn btn-success" role="button">ตกลง</a> </center>
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             </div>
         </div>
@@ -137,4 +137,7 @@
   </div>
 </footer>
 </body>
+<script>
+    <?php if(isset($_GET['idPost']))echo "setTimeout(function(){ window.location.assign(\"http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/detail/ProductDetail.php?idPost=".$_GET['idPost']."); }, 2000);"; ?>
+</script>
 </html>
