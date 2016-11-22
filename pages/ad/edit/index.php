@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group">
                     <label id="ad_price_label" for="ad_price">ราคา</label>
-                    <input type="text" class="form-control" id="ad_price" placeholder="ราคา" required>
+                    <input type="number" class="form-control" id="ad_price" placeholder="ราคา" required>
                 </div>
                 <div class="form-group">
                     <label id="ad_status_label" for="ad_status">สถานะ</label>
@@ -147,7 +147,7 @@
                     adName: ad_name.val(),
                     adLocation: ad_location.val(),
                     adImg: ad_img_input.val(),
-                    adURL: ad_img_input.val(),
+                    adURL: ad_url.val(),
                     adPrice: ad_price.val(),
                     adStatus: $("#ad_status option:selected").val(),
                     adExp: $("#ad_exp option:selected").val()

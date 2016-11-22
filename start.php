@@ -36,7 +36,7 @@
             <!--/เมนูกดเลือกประเภทสินค้า-->
         </div>
         <!-- ทำงานที่นี่ -->
-        <?php //require("bin/popularProduct.php"); ?>
+        <?php require("bin/popularProduct.php"); ?>
         <!-- สินค้าทั่วไป -->
         <?php require("bin/commonProduct.php"); ?>
         <!-- /สินค้าทั่วไป -->

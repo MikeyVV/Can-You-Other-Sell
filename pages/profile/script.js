@@ -18,62 +18,13 @@ $(document).ready(function () {
     if (rateInURL != 1 && rateInURL != 2 && rateInURL != 3 && rateInURL != 4 && rateInURL != 5)rateInURL = 0;
 
 
-    var rate = 0,
+    var rate = $("#main_comment").attr("data-rate"),
         star0 = $("#edit_star0"),
         star1 = $("#edit_star1"),
         star2 = $("#edit_star2"),
         star3 = $("#edit_star3"),
         star4 = $("#edit_star4"),
-        star5 = $("#edit_star5"),
-        data_rate = $("#main_comment").attr("data-rate");
-
-
-    switch (data_rate) {
-        case 0:
-            star1.attr("src", "../../img/star-rating/star-empty.png");
-            star2.attr("src", "../../img/star-rating/star-empty.png");
-            star3.attr("src", "../../img/star-rating/star-empty.png");
-            star4.attr("src", "../../img/star-rating/star-empty.png");
-            star5.attr("src", "../../img/star-rating/star-empty.png");
-            break;
-        case 1:
-            star1.attr("src", "../../img/star-rating/star-active.png");
-            star2.attr("src", "../../img/star-rating/star-empty.png");
-            star3.attr("src", "../../img/star-rating/star-empty.png");
-            star4.attr("src", "../../img/star-rating/star-empty.png");
-            star5.attr("src", "../../img/star-rating/star-empty.png");
-            break;
-        case 2:
-            star1.attr("src", "../../img/star-rating/star-active.png");
-            star2.attr("src", "../../img/star-rating/star-active.png");
-            star3.attr("src", "../../img/star-rating/star-empty.png");
-            star4.attr("src", "../../img/star-rating/star-empty.png");
-            star5.attr("src", "../../img/star-rating/star-empty.png");
-            break;
-        case 3:
-            star1.attr("src", "../../img/star-rating/star-active.png");
-            star2.attr("src", "../../img/star-rating/star-active.png");
-            star3.attr("src", "../../img/star-rating/star-active.png");
-            star4.attr("src", "../../img/star-rating/star-empty.png");
-            star5.attr("src", "../../img/star-rating/star-empty.png");
-            break;
-        case 4:
-            star1.attr("src", "../../img/star-rating/star-active.png");
-            star2.attr("src", "../../img/star-rating/star-active.png");
-            star3.attr("src", "../../img/star-rating/star-active.png");
-            star4.attr("src", "../../img/star-rating/star-active.png");
-            star5.attr("src", "../../img/star-rating/star-empty.png");
-            break;
-        case 5:
-            star1.attr("src", "../../img/star-rating/star-active.png");
-            star2.attr("src", "../../img/star-rating/star-active.png");
-            star3.attr("src", "../../img/star-rating/star-active.png");
-            star4.attr("src", "../../img/star-rating/star-active.png");
-            star5.attr("src", "../../img/star-rating/star-active.png");
-            break;
-        default:
-            console.log("star not found.")
-    }
+        star5 = $("#edit_star5");
 
 
     //rate 1
@@ -379,59 +330,17 @@ $(document).ready(function () {
         else {
             //alert("false");
             var mycomment = $("textarea#textarea_comment").val();
-
-            $("#main_comment").load("mycomment.php", function () {
-                if (rate == 0) {
-                    star1.attr("src", "../../img/star-rating/star-empty.png");
-                    star2.attr("src", "../../img/star-rating/star-empty.png");
-                    star3.attr("src", "../../img/star-rating/star-empty.png");
-                    star4.attr("src", "../../img/star-rating/star-empty.png");
-                    star5.attr("src", "../../img/star-rating/star-empty.png");
-                } else if (rate == 1) {
-                    star1.attr("src", "../../img/star-rating/star-active.png");
-                    star2.attr("src", "../../img/star-rating/star-empty.png");
-                    star3.attr("src", "../../img/star-rating/star-empty.png");
-                    star4.attr("src", "../../img/star-rating/star-empty.png");
-                    star5.attr("src", "../../img/star-rating/star-empty.png");
-                } else if (rate == 2) {
-                    star1.attr("src", "../../img/star-rating/star-active.png");
-                    star2.attr("src", "../../img/star-rating/star-active.png");
-                    star3.attr("src", "../../img/star-rating/star-empty.png");
-                    star4.attr("src", "../../img/star-rating/star-empty.png");
-                    star5.attr("src", "../../img/star-rating/star-empty.png");
-                } else if (rate == 3) {
-                    star1.attr("src", "../../img/star-rating/star-active.png");
-                    star2.attr("src", "../../img/star-rating/star-active.png");
-                    star3.attr("src", "../../img/star-rating/star-active.png");
-                    star4.attr("src", "../../img/star-rating/star-empty.png");
-                    star5.attr("src", "../../img/star-rating/star-empty.png");
-                } else if (rate == 4) {
-                    star1.attr("src", "../../img/star-rating/star-active.png");
-                    star2.attr("src", "../../img/star-rating/star-active.png");
-                    star3.attr("src", "../../img/star-rating/star-active.png");
-                    star4.attr("src", "../../img/star-rating/star-active.png");
-                    star5.attr("src", "../../img/star-rating/star-empty.png");
-                } else if (rate == 5) {
-                    star1.attr("src", "../../img/star-rating/star-active.png");
-                    star2.attr("src", "../../img/star-rating/star-active.png");
-                    star3.attr("src", "../../img/star-rating/star-active.png");
-                    star4.attr("src", "../../img/star-rating/star-active.png");
-                    star5.attr("src", "../../img/star-rating/star-active.png");
-                }
-
-                $("#mycomment").text(mycomment);
-
                 //Todo Ajax store to DB
-                $.post("new_comment/",
+                $.post("edit_comment/",
                     {
                         idMember: $("#seller_id").attr("data-id-member"),
                         txt_comment: mycomment,
                         rate: rate
                     },function()
                     {
-                        location.reload()
+                        //location.reload()
                     });
-            });
+
         }
 
     });

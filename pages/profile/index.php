@@ -16,10 +16,10 @@ $commentDetail = json_decode($comment->getAllComment($_GET['idMember']));
     <?php require("../../bin/header.php"); ?>
     <link rel="stylesheet" href="style.css">
     <style>
-        /*
-        Ratings Stars
+
+        /*Ratings Stars
         (with as little code as possible)
-    */
+
         .rating {
             unicode-bidi: bidi-override;
             direction: rtl;
@@ -44,7 +44,7 @@ $commentDetail = json_decode($comment->getAllComment($_GET['idMember']));
             position: absolute;
             left: 0;
             color: gold;
-        }
+        }*/
 
     </style>
     <!--/CSS, Bootstrap-->
@@ -72,9 +72,6 @@ $commentDetail = json_decode($comment->getAllComment($_GET['idMember']));
                 </div>
             </div>
             <div class="row">
-                <!--ประเภทสินค้ายอดนิยม-->
-                <?php require("../../bin/popularProduct.php"); ?>
-                <!--/ประเภทสินค้ายอดนิยม-->
             </div>
         </div>
     </div>
@@ -189,22 +186,46 @@ $commentDetail = json_decode($comment->getAllComment($_GET['idMember']));
                                         <?php
                                         switch ($myCommentDetail->rate){
                                             case 0: ?>
-                                                <img id="edit_star0" src="../../img/star-rating/star-0.png">
+                                                <img id="edit_star1" src="../../img/star-rating/star-empty.png">
+                                                <img id="edit_star2" src="../../img/star-rating/star-empty.png">
+                                                <img id="edit_star3" src="../../img/star-rating/star-empty.png">
+                                                <img id="edit_star4" src="../../img/star-rating/star-empty.png">
+                                                <img id="edit_star5" src="../../img/star-rating/star-empty.png">
                                                 <?php break;
                                             case 1: ?>
-                                                <img id="edit_star1" src="../../img/star-rating/star-1.png">
+                                                <img id="edit_star1" src="../../img/star-rating/star-active.png">
+                                                <img id="edit_star2" src="../../img/star-rating/star-empty.png">
+                                                <img id="edit_star3" src="../../img/star-rating/star-empty.png">
+                                                <img id="edit_star4" src="../../img/star-rating/star-empty.png">
+                                                <img id="edit_star5" src="../../img/star-rating/star-empty.png">
                                                 <?php break;
                                             case 2: ?>
-                                                <img id="edit_star2" src="../../img/star-rating/star-2.png">
+                                                <img id="edit_star1" src="../../img/star-rating/star-active.png">
+                                                <img id="edit_star2" src="../../img/star-rating/star-active.png">
+                                                <img id="edit_star3" src="../../img/star-rating/star-empty.png">
+                                                <img id="edit_star4" src="../../img/star-rating/star-empty.png">
+                                                <img id="edit_star5" src="../../img/star-rating/star-empty.png">
                                                 <?php break;
                                             case 3: ?>
-                                                <img id="edit_star3" src="../../img/star-rating/star-3.png">
+                                                <img id="edit_star1" src="../../img/star-rating/star-active.png">
+                                                <img id="edit_star2" src="../../img/star-rating/star-active.png">
+                                                <img id="edit_star3" src="../../img/star-rating/star-active.png">
+                                                <img id="edit_star4" src="../../img/star-rating/star-empty.png">
+                                                <img id="edit_star5" src="../../img/star-rating/star-empty.png">
                                                 <?php break;
                                             case 4: ?>
-                                                <img id="edit_star4" src="../../img/star-rating/star-4.png">
+                                                <img id="edit_star1" src="../../img/star-rating/star-active.png">
+                                                <img id="edit_star2" src="../../img/star-rating/star-active.png">
+                                                <img id="edit_star3" src="../../img/star-rating/star-active.png">
+                                                <img id="edit_star4" src="../../img/star-rating/star-active.png">
+                                                <img id="edit_star5" src="../../img/star-rating/star-empty.png">
                                                 <?php break;
                                             case 5: ?>
-                                                <img id="edit_star5" src="../../img/star-rating/star-5.png">
+                                                <img id="edit_star1" src="../../img/star-rating/star-active.png">
+                                                <img id="edit_star2" src="../../img/star-rating/star-active.png">
+                                                <img id="edit_star3" src="../../img/star-rating/star-active.png">
+                                                <img id="edit_star4" src="../../img/star-rating/star-active.png">
+                                                <img id="edit_star5" src="../../img/star-rating/star-active.png">
                                                 <?php break;
                                             default:
                                                 echo "star not found";

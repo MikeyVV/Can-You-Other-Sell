@@ -49,7 +49,7 @@
                     <input type="text" class="form-control" id="ad_img_input" placeholder="วางลิงค์รูปภาพที่นี่" required>
                 </div>
                 <div class="form-group">
-                    <label id="ad_price_label" for="ad_price">ลิงค์รูปภาพที่จะแสดง</label>
+                    <label id="ad_price_label" for="ad_price">ราคา</label>
                     <input type="number" class="form-control" id="ad_price" placeholder="ราคาของสินค้า" required>
                 </div>
                 <div class="form-group">
@@ -102,7 +102,7 @@
             ad_img = $("#ad_img");
 
         /*
-         edit ad
+         add an ad
          */
         add_ad_form.submit(function(e){
             e.preventDefault();
@@ -111,7 +111,7 @@
                     adName: ad_name.val(),
                     adLocation: ad_location.val(),
                     adImg: ad_img_input.val(),
-                    adURL: ad_img_input.val(),
+                    adURL: ad_url.val(),
                     adPrice: ad_price.val(),
                     adExp: $("#ad_exp option:selected").val()
                 }, function (data, status) {

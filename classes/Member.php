@@ -91,23 +91,28 @@ class Member extends db
      * $idMember - the user who rate edited
      */
     //Todo edit rate
-    public function editRate($idMember, $point, $yourIdMember)
+    public function editRate($idMember, $new_point, $old_point, $yourIdMember)
     {
-        /*$idMember = mysqli_real_escape_string($this->db_link, $idMember);
+        $idMember = mysqli_real_escape_string($this->db_link, $idMember);
         $result = mysqli_query($this->db_link, "SELECT `idMember` FROM `CYOS_Member` WHERE `CYOS_Member`.`idMember` = $yourIdMember");
         $verifyID = mysqli_num_rows($result);
         $sql = "";
         if ($verifyID == 1) {
-            $sql = "UPDATE `it57160033`.`CYOS_Member` SET `rateSum` = `rateSum`+ $point, `totalVote` = `totalVote`+1 WHERE `CYOS_Member`.`idMember` = $idMember";
+            //delete old rate
+            $sql = "UPDATE `it57160033`.`CYOS_Member` SET `rateSum` = `rateSum`- $old_point WHERE `CYOS_Member`.`idMember` = $idMember";
+            mysqli_query($this->db_link, $sql);
+            //add new rate
+            $sql = "UPDATE `it57160033`.`CYOS_Member` SET `rateSum` = `rateSum`+ $new_point WHERE `CYOS_Member`.`idMember` = $idMember";
             mysqli_query($this->db_link, $sql);
 
+            //calculating new rate
             $sql = "SELECT `rateSum`, `totalVote` FROM `CYOS_Member` WHERE `CYOS_Member`.`idMember` = $idMember";
             $result = mysqli_query($this->db_link, $sql);
             $result = mysqli_fetch_object($result);
             $rate = $result->rateSum / $result->totalVote;
             $sql = "UPDATE `it57160033`.`CYOS_Member` SET `rate` = $rate WHERE `CYOS_Member`.`idMember` = $idMember";
             mysqli_query($this->db_link, $sql);
-        }*/
+        }
     }
 
     public function getRate($idMemebr)

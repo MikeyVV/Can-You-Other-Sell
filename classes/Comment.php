@@ -67,24 +67,6 @@ class Comment extends db
         mysqli_query($this->db_link, $sql);
     }
 
-    public function editComment($idComment, $txt_comment)
-    {
-        $idComment = mysqli_real_escape_string($this->db_link, $idComment);
-        $txt_comment = mysqli_real_escape_string($this->db_link, $txt_comment);
-        mysqli_query($this->db_link, "SET NAMES UTF8");
-        $sql = "UPDATE `it57160033`.`CYOS_Comments` SET `comment` = '$txt_comment' WHERE `CYOS_Comments`.`idComments` = $idComment";
-        mysqli_query($this->db_link, $sql);
-    }
-
-    public function editRate($idComment, $rate)
-    {
-        $idComment = mysqli_real_escape_string($this->db_link, $idComment);
-        $rate = mysqli_real_escape_string($this->db_link, $rate);
-        mysqli_query($this->db_link, "SET NAMES UTF8");
-        $sql = "UPDATE `it57160033`.`CYOS_Comments` SET `rate` = '$rate' WHERE `CYOS_Comments`.`idComments` = $idComment";
-        mysqli_query($this->db_link, $sql);
-    }
-
     /* show comment */
     //idMember : id of seller profile comment
     public function getAllComment($idMember)
