@@ -40,18 +40,19 @@ class Comment extends db
         mysqli_query($this->db_link, $sql);
     }
 
-    public function isComment_exit($nameOfCommenter)
+    public function isComment_exit($idMember, $nameOfCommenter)
     {
         $nameOfCommenter = mysqli_real_escape_string($this->db_link, $nameOfCommenter);
-        $sql = "SELECT * FROM `CYOS_Comments` WHERE `nameOfCommentator` = '$nameOfCommenter'";
+        $sql = "SELECT * FROM `CYOS_Comments` WHERE `idMember` = '$idMember' AND `nameOfCommentator` = '$nameOfCommenter'";
         $num_row = mysqli_num_rows(mysqli_query($this->db_link, $sql));
         return $num_row > 0;
     }
 
-    public function getMyDetailComment()
+    public function getMyDetailComment($idMember)
     {
+        $idMember = mysqli_real_escape_string($this->db_link, $idMember);
         $nameOfCommenter = $_SESSION['firstName'] . " " . $_SESSION['lastName'];
-        $sql = "SELECT * FROM `CYOS_Comments` WHERE `nameOfCommentator` = '$nameOfCommenter'";
+        $sql = "SELECT * FROM `CYOS_Comments` WHERE `idMember` = '$idMember' AND `nameOfCommentator` = '$nameOfCommenter'";
         return mysqli_fetch_object(mysqli_query($this->db_link, $sql));
     }
 

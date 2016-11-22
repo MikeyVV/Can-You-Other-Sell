@@ -3,22 +3,31 @@
     <i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp&nbsp<b>สินค้าแนะนำ</b>
   </div>
   <div class="panel-body">
-    <div style="text-align:center" class="list-group">
-        <a href="" ><img
-            src="http://th-live-01.slatic.net/p/toshiba-tuueyn-1-pratuu-curve-live-khnaad-5-khiw-run-gr-b145tznn-siiekhiiyw-7592-0591382-1.jpg"
-            class="recommend-product img-thumbnail"></a>
-        <a href="#"><p>ตู้เย็นโตชิบา</p></a>
-        <p>ราคา 4,000 บาท</p>
-        <p>พัทยา, ชลบุรี</p>
-        <a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/ProductDetail.php"><img src="https://i.ytimg.com/vi/bMbW4VSHpEg/maxresdefault.jpg"
-             class="recommend-product img-thumbnail"></a>
-        <a href="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/ProductDetail.php"><p>รถไฟไทย สไตล์วินเทจ</p></a>
-        <p>ราคา 200,000,000 บาท</p>
-        <p>มักกะสัน, กรุงเทพฯ</p>
-        <a href="#"><img src="http://cp.lnwfile.com/_/cp/_raw/zt/86/7g.jpg" class="recommend-product img-thumbnail"></a>
-        <a href="#"><p>นาฬิกา TAG</p></a>
-        <p>ราคา 20,000 บาท</p>
-        <p>หัวหิน, ประจวบคีรีขัน</p>
-    </div>
-    </div>
+    <div style="text-align:center" class="list-group" id="recommend-list"></div>
+  </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $.post("http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/bin/ctrl.php",
+            {
+                function: "getAd"
+            }
+            , function (data, status) {
+
+                if (status === "success") {
+                    data = JSON.parse(data);
+                    //alert("โฟมแก้ Ad อยู่");
+                    //alert("โฟมแก้ Ad อยู่"+data.lists[0].adName);
+                    var nf = new Intl.NumberFormat();
+                    for (var i = 0; i < data.lists.length; i++) {
+                        $("#recommend-list").append("<div><div class='thumbnail popular-product-img-thumbnail'><a href='"+data.lists[i].adURL+"'><img src='"+data.lists[i].adImg+"'></a></div><a href='"+data.lists[i].adURL+"'><p>"+data.lists[i].adName+"</p></a><p>ราคา "+nf.format(data.lists[i].adPrice)+" บาท</p><p>"+data.lists[i].adLoction+"</p></div>");
+                        if(i < data.lists.length-1)$("#recommend-list").append("<hr>");
+                    }
+
+                } else {
+                    alert("fail");
+                }
+            });
+    });
+</script>

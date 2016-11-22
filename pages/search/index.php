@@ -62,11 +62,11 @@ $out = json_decode($detail->search($keyword));
 
             <div class="row">
                 <?php for ($i = 0; $i < count($out->lists); $i++) { ?>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
 
                         <div class="thumbnail popular-product">
                             <div class="thumbnail popular-product-img-thumbnail">
-                                <div id="img"><img src="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/img/products/<?php echo $out->lists[$i]->nameImage ?>" style="width:100px;height:100px;"></div>
+                                <div id="img"><img src="http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/img/products/<?php echo $out->lists[$i]->nameImage ?>" style="width:180px;height:100px;"></div>
                             </div>
                             <div class="caption">
                                 

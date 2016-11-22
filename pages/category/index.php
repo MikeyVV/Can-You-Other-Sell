@@ -1,5 +1,6 @@
 <?php
 $category =  $_GET['category'];
+$idCategory =  $_GET['idCategory'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +12,7 @@ $category =  $_GET['category'];
 </head>
 
 <body class="web-bg">
+<input id="idCate" type="hidden" value="<?php echo $idCategory; ?>">
 <!--แถบบาร์ข้างบน Navbar-->
 <?php require("../../bin/navbar.php"); ?>
 <!--/แถบบาร์ข้างบน Navbar-->
@@ -289,6 +291,3 @@ $category =  $_GET['category'];
 </body>
 </html>
 
-<?php
-
-?>

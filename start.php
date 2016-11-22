@@ -53,3 +53,25 @@
 </body>
 <?php require("bin/footer.php"); ?>
 </html>
+
+<script>
+    var nf = new Intl.NumberFormat();
+    $(document).ready(function () {
+        $.post("http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/bin/ctrl.php",
+            {
+                function: "getTopFour"
+            }
+            , function (data, status) {
+
+                if (status === "success") {
+                    data = JSON.parse(data);
+                    for (var i = 0; i < data.lists.length; i++) {
+                        $("#popular-list").append("<div class='col-sm-3'> <div class='thumbnail popular-product'><div class='thumbnail popular-product-img-thumbnail'><a href='http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/detail/ProductDetail.php?idPost="+data.lists[i].idPost+"'><img src='http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/img/products/"+data.lists[i].nameImage+"'></a></div><div class='caption'><a href='http://angsila.cs.buu.ac.th/~57160033/887240%20System%20Analysis%20and%20Designs/Project/Mockup/pages/post/detail/ProductDetail.php?idPost="+data.lists[i].idPost+"'><p>"+data.lists[i].name+"</p></a><p>ราคา "+nf.format(data.lists[i].price)+" บาท</p><p>"+data.lists[i].address+"</p></div></div></div>");
+                    }
+
+                } else {
+                    alert("fail");
+                }
+            });
+    });
+</script>

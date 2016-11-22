@@ -139,7 +139,27 @@ class PostProduct extends db
 
         $out = "{\"lists\" : [";
         while ($id = mysqli_fetch_object($listIdPost)){
-            $sql = "SELECT DISTINCT idPost, name, price, address, nameImage FROM `CYOS_PostProduct` NATURAL JOIN `CYOS_Member` NATURAL JOIN `CYOS_ProductImage` WHERE idPost = ".$id->idPost." LIMIT 1";
+            $sql = "SELECT DISTINCT p.idPost, name, price, address, nameImage FROM CYOS_PostProduct p JOIN CYOS_Member m JOIN CYOS_ProductImage i WHERE p.idMember = m.idMember AND p.idPost = i.idPost AND p.idPost = ".$id->idPost." LIMIT 1";
+            //echo $sql;
+            $postProduct = mysqli_query($this->db_link, $sql);
+
+            if ($out != "{\"lists\" : [") $out .= ",";
+            $out .= json_encode(mysqli_fetch_object($postProduct));
+        }
+        $out .= "]}";
+        echo $out;
+        //echo json_encode(mysqli_fetch_object($postProduct));
+        return;
+    }
+
+    public function getProductByCategory($category)
+    {
+        mysqli_query($this->db_link, "SET NAMES UTF8");
+        $listIdPost = mysqli_query($this->db_link, "SELECT idPost FROM `CYOS_PostProduct` WHERE category = ".$category." ORDER BY view DESC");
+
+        $out = "{\"lists\" : [";
+        while ($id = mysqli_fetch_object($listIdPost)){
+            $sql = "SELECT DISTINCT p.idPost, name, price, address, nameImage FROM CYOS_PostProduct p JOIN CYOS_Member m JOIN CYOS_ProductImage i WHERE p.idMember = m.idMember AND p.idPost = i.idPost AND p.idPost = ".$id->idPost." LIMIT 1";
             //echo $sql;
             $postProduct = mysqli_query($this->db_link, $sql);
 
@@ -198,3 +218,4 @@ class PostProduct extends db
 //$postPro->editDetailPostProduct(2, "ตู้เย็นโตชิบา", 2, 4000, "รุ่นนี้ คือที่สุด!! ไม่พอใจยินดีคืนเงิน");
 //$img = array("http://th.compare.asia/images/upload/product/2608/2774608/small_product.jpg", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRETsT2odGy9Xj28Zgeat7B6-_-E7-H7g1Gmu3y8gGlHnX8t868");
 //$postPro->editImagePostProduct(2, $img);
+//$postPro->getProductByCategory(1);

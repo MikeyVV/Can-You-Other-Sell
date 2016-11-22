@@ -129,8 +129,9 @@ $commentDetail = json_decode($comment->getAllComment($_GET['idMember']));
             if ($isLogin) {
                 if ($_SESSION["idMember"] != $_GET['idMember']) {
                     //Todo if you have ever comment to this you will see the edit panel
-                    if($comment->isComment_exit($_SESSION['firstName'] . " " . $_SESSION['lastName'])){ ?>
-                        <div id="view_comment_panel" class="panel panel-default">
+                    if($comment->isComment_exit($_GET['idMember'],$_SESSION['firstName'] . " " . $_SESSION['lastName'])){
+                        $myCommentDetail = $comment->getMyDetailComment($_GET['idMember']); ?>
+                        <div id="view_comment_panel" data-id-comment="<?php echo $myCommentDetail->idComments; ?>" class="panel panel-default">
                             <div class="panel-heading">
                                 <i class="fa fa-comments" aria-hidden="true"></i>&nbsp&nbsp<b>ความคิดเห็นของฉัน</b>
                                 <button id="buttoneditcomment" type="button" class="btn btn-warning pull-right" style="padding-bottom: 4px; padding-top: 4px; margin-top: -5px;"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp&nbspแก้ไข</button>
@@ -138,7 +139,6 @@ $commentDetail = json_decode($comment->getAllComment($_GET['idMember']));
                             <div class="panel-body" style="border-bottom: 1px solid #ddd">
                                 <p>ให้
                                     <?php
-                                    $myCommentDetail = $comment->getMyDetailComment();
                                     switch ($myCommentDetail->rate){
                                         case 0: ?>
                                             <img  src="../../img/star-rating/star-0.png">
@@ -296,8 +296,7 @@ $commentDetail = json_decode($comment->getAllComment($_GET['idMember']));
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="fa fa-comments"
-                       aria-hidden="true"></i>&nbsp&nbsp<b>ความคิดเห็นต่อผู้ขาย(<?php echo count($commentDetail->lists); ?>
-                        )</b>
+                       aria-hidden="true"></i>&nbsp&nbsp<b>ความคิดเห็นต่อผู้ขาย(<?php echo count($commentDetail->lists); ?>)</b>
                 </div>
                 <?php for ($i = 0; $i < count($commentDetail->lists); $i++) { ?>
                     <div class="panel-body" style="border-bottom: 1px solid #ddd">
@@ -340,7 +339,7 @@ $commentDetail = json_decode($comment->getAllComment($_GET['idMember']));
     </div>
 </div>
 <?php require("../../bin/footer.php"); ?>
-<?php if($comment->isComment_exit($_SESSION['firstName'] . " " . $_SESSION['lastName'])){ ?>
+<?php if($comment->isComment_exit($_GET['idMember'],$_SESSION['firstName'] . " " . $_SESSION['lastName'])){ ?>
 <script src="script.js"></script>
 <?php } else {?>
 <script src="star.js"></script>

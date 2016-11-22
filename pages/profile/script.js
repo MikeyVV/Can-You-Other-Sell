@@ -24,7 +24,8 @@ $(document).ready(function () {
         star2 = $("#edit_star2"),
         star3 = $("#edit_star3"),
         star4 = $("#edit_star4"),
-        star5 = $("#edit_star5");
+        star5 = $("#edit_star5"),
+        old_point = rate;
 
 
     //rate 1
@@ -334,11 +335,13 @@ $(document).ready(function () {
                 $.post("edit_comment/",
                     {
                         idMember: $("#seller_id").attr("data-id-member"),
+                        idComment: $("#view_comment_panel").attr("data-id-comment"),
                         txt_comment: mycomment,
-                        rate: rate
+                        rate: rate,
+                        old_point: old_point
                     },function()
                     {
-                        //location.reload()
+                        location.reload()
                     });
 
         }
